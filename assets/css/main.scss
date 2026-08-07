@@ -1,0 +1,157 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+/* Built-in Sass modules you'll likely use across partials */
+@use "sass:math";
+@use "sass:string";
+
+/* Configure your design tokens BEFORE loading any of your partials.
+   Make sure `_sass/_variables.scss` declares `$max-content-width: 72rem !default;` */
+@use "variables" with (
+  $max-content-width: {{ site.max_width | default:  "930px" }}
+);
+
+/* Your project partials — convert these files to `@use "variables";`
+   (or `@use "variables" as *;`) inside each file and qualify variables if needed. */
+@use "themes";
+@use "layout";
+
+// Core styles organized by usage
+@use "typography";
+@use "navbar";
+@use "footer";
+@use "blog";
+@use "publications";
+@use "components";
+@use "utilities";
+
+// Other specialized styles
+@use "tabs";
+@use "teachings";
+@use "typograms";
+
+/* ============================================================
+   Yanchi Li — custom typography & layout refinements
+   ============================================================ */
+
+/* --- Academic color palette: professional blue --- */
+:root {
+  --global-theme-color: #1f6feb;
+  --global-hover-color: #1f6feb;
+}
+
+html[data-theme="dark"] {
+  --global-theme-color: #58a6ff;
+  --global-hover-color: #58a6ff;
+}
+
+/* --- Body typography --- */
+body {
+  font-family: "Source Sans 3", "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  font-size: 1.03rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- Headings: elegant serif --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.post-title,
+.navbar-brand,
+.navbar .navbar-nav .nav-link {
+  font-family: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman",
+    serif;
+}
+
+h1 {
+  font-size: 2.15rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  font-size: 1.55rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  margin-top: 2.4rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+
+/* About-page section headings: refined with a subtle underline */
+.post h2.section-title {
+  font-size: 1.6rem;
+  font-weight: 650;
+  padding-bottom: 0.45rem;
+  margin: 2.6rem 0 1.2rem;
+  border-bottom: 1px solid var(--global-divider-color);
+  letter-spacing: -0.01em;
+}
+
+/* --- Navbar polish --- */
+.navbar .navbar-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.navbar .navbar-nav .nav-link {
+  font-size: 1.02rem;
+  font-weight: 500;
+}
+
+/* --- Profile image: refined frame --- */
+.profile img {
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--global-divider-color);
+}
+
+/* --- Post / page titles --- */
+.post-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+/* --- Publications: serif titles --- */
+.publications .bibliography .title {
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+  font-size: 1.04rem;
+  font-weight: 600;
+}
+
+/* --- Contact icons --- */
+.social .contact-icons {
+  font-size: 1.7rem;
+}
+
+.social .contact-icons a {
+  margin: 0 0.35rem;
+}
+
+/* --- News --- */
+.news table td {
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.news .date {
+  white-space: nowrap;
+}
+
+/* --- Footer --- */
+footer {
+  font-size: 0.9rem;
+}

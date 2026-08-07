@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: >
   Ph.D. candidate, School of Computer Science, China University of Geosciences (Wuhan, China) ·
