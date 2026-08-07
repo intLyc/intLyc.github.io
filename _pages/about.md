@@ -37,8 +37,6 @@ latest_posts:
 
 ## Reviewing & Services
 
-Referee for leading international journals and conferences.
-
 <div class="service-group">
   <div class="service-group-title">Journals</div>
   <div class="service-blocks">
