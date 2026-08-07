@@ -13,8 +13,7 @@ intLyc.github.io/
 ├── assets/
 │   ├── css/style.css     # Styles
 │   └── img/
-│       ├── profile.webp  # Profile photo (WebP — replace with your photo)
-│       ├── profile.svg   # Fallback placeholder avatar
+│       ├── profile.jpg   # Profile photo
 │       └── favicon.svg   # Site favicon
 └── README.md
 ```
