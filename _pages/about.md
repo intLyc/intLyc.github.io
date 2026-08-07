@@ -23,7 +23,7 @@ latest_posts:
   enabled: false
 ---
 
-**Yanchi Li (李延炽)** is pursuing a Ph.D. degree supervised by Prof. Wenyin Gong and co-supervised by Prof. Qiong Gu, and is currently a visiting Ph.D. student supervised by Prof. Yew-Soon Ong. His research focuses on evolutionary computation, especially multitask optimization and its applications to reinforcement learning.
+**Yanchi Li (李延炽)** is pursuing a Ph.D. degree supervised by Prof. Wenyin Gong and co-supervised by Prof. Qiong Gu, and is currently a visiting Ph.D. student supervised by Prof. Yew-Soon Ong.
 
 **Email:** int_lyc@cug.edu.cn
 

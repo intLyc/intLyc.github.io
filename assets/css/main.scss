@@ -188,6 +188,22 @@ footer {
   line-height: 1.2;
 }
 
+/* --- Venue abbreviation badges: larger, narrower, clean colors --- */
+.publications .abbr abbr.badge {
+  display: inline-block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  padding: 0.3rem 0.8rem;
+  width: auto;
+  min-width: 4.2rem;
+  text-align: center;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+}
+
 /* --- Affiliations in the subtitle (one per line) --- */
 .desc .affil {
   display: inline;
