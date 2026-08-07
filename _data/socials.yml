@@ -5,4 +5,4 @@ email: int_lyc@cug.edu.cn # your email address
 github_username: intLyc # your GitHub user name
 research_gate_profile: Yanchi-Li-2 # your profile on ResearchGate
 scholar_userid: h7hvzUEAAAAJ # your Google Scholar ID
-rss_icon: true # comment this line to hide the RSS icon
+# rss_icon: true # RSS icon is hidden (unused)
