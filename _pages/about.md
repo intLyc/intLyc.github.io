@@ -3,38 +3,57 @@ layout: about
 title: About
 permalink: /
 subtitle: >
-  Ph.D. candidate, School of Computer Science, China University of Geosciences (Wuhan, China) ·
-  Visiting Ph.D. student, College of Computing and Data Science, Nanyang Technological University (Singapore)
+  <span class="affil"><strong>Ph.D. candidate</strong> — School of Computer Science, China University of Geosciences (Wuhan, China)</span><br>
+  <span class="affil"><strong>Visiting Ph.D. student</strong> — College of Computing and Data Science, Nanyang Technological University (Singapore)</span>
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>School of Computer Science</p>
-    <p>China University of Geosciences (Wuhan)</p>
-    <p>Wuhan, Hubei, China</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  enabled: false # news is disabled on the homepage
 
 latest_posts:
   enabled: false
 ---
 
-**Yanchi Li (李延炽)** has been pursuing a Ph.D. degree in the School of Computer Science at China University of Geosciences (Wuhan, China) since 2023, supervised by Prof. Wenyin Gong and co-supervised by Prof. Qiong Gu. Since 2025, he has also been a visiting Ph.D. student in the College of Computing and Data Science at Nanyang Technological University (Singapore), supervised by Prof. Yew-Soon Ong.
-
-He served as a referee for international journals such as *IEEE Transactions on Evolutionary Computation*, *IEEE Transactions on Systems, Man, and Cybernetics: Systems*, *IEEE Computational Intelligence Magazine*, *Artificial Intelligence Review*, *Swarm and Evolutionary Computation*, *Expert Systems with Applications*; and international conferences such as *ICML*, *AAAI*, *ACM MM*.
+**Yanchi Li (李延炽)** is pursuing a Ph.D. degree supervised by Prof. Wenyin Gong and co-supervised by Prof. Qiong Gu, and is currently a visiting Ph.D. student supervised by Prof. Yew-Soon Ong. His research focuses on evolutionary computation, especially multitask optimization and its applications to reinforcement learning.
 
 **Email:** int_lyc@cug.edu.cn
 
 ## Research Interests
 
-- **Evolutionary Multitasking**
-- **Multitask Optimization**
-- **Evolutionary Reinforcement Learning**
+<div class="service-blocks">
+  <span class="service-block">Evolutionary Multitasking</span>
+  <span class="service-block">Multitask Optimization</span>
+  <span class="service-block">Evolutionary Reinforcement Learning</span>
+</div>
+
+## Reviewing & Services
+
+Referee for leading international journals and conferences.
+
+<div class="service-group">
+  <div class="service-group-title">Journals</div>
+  <div class="service-blocks">
+    <span class="service-block">IEEE TEVC</span>
+    <span class="service-block">IEEE TSMC-S</span>
+    <span class="service-block">IEEE CIM</span>
+    <span class="service-block">AI Review</span>
+    <span class="service-block">Swarm Evol. Comput.</span>
+    <span class="service-block">Expert Syst. Appl.</span>
+  </div>
+</div>
+
+<div class="service-group">
+  <div class="service-group-title">Conferences</div>
+  <div class="service-blocks">
+    <span class="service-block">ICML</span>
+    <span class="service-block">AAAI</span>
+    <span class="service-block">ACM MM</span>
+  </div>
+</div>
