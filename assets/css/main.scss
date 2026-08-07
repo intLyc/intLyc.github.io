@@ -156,9 +156,9 @@ footer {
   font-size: 0.9rem;
 }
 
-/* --- Publication numbering (continuous across year groups) --- */
+/* --- Publication number + venue abbreviation (same column) --- */
 .publications {
-  counter-reset: publication;
+  counter-reset: pub;
 }
 
 .publications ol.bibliography {
@@ -167,22 +167,25 @@ footer {
 }
 
 .publications ol.bibliography li {
-  counter-increment: publication;
-  position: relative;
-  padding-left: 2.6rem;
+  counter-increment: pub;
 }
 
-.publications ol.bibliography li::before {
-  content: counter(publication);
-  position: absolute;
-  left: 0;
-  top: 0.25rem;
-  width: 2.1rem;
+.publications .abbr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  padding-top: 0.15rem;
+}
+
+.publications .pub-num::before {
+  content: counter(pub);
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--global-theme-color);
-  text-align: right;
+  line-height: 1.2;
 }
 
 /* --- Affiliations in the subtitle (one per line) --- */
