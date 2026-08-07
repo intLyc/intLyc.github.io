@@ -1,0 +1,6 @@
+# Optional: map co-author last names to their homepage URLs.
+# Used to hyperlink author names in the publications list.
+# Example:
+# "gong":
+#   - firstname: ["Wenyin", "W."]
+#     url: https://example.com

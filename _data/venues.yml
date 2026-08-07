@@ -1,0 +1,31 @@
+"ICML":
+  url: https://icml.cc/
+  color: "#6c9f25"
+
+"ACM TELO":
+  url: https://dl.acm.org/journal/telo
+  color: "#b509ac"
+
+"IEEE TEVC":
+  url: https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=4235
+  color: "#f04848"
+
+"IEEE TSMC-S":
+  url: https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6221021
+  color: "#00369f"
+
+"ASOC":
+  url: https://www.sciencedirect.com/journal/applied-soft-computing
+  color: "#009f36"
+
+"Information Sciences":
+  url: https://www.sciencedirect.com/journal/information-sciences
+  color: "#3182bd"
+
+"ESWA":
+  url: https://www.sciencedirect.com/journal/expert-systems-with-applications
+  color: "#c77d29"
+
+"GECCO":
+  url: https://gecco-2024.sigevo.org/
+  color: "#7b5cb7"

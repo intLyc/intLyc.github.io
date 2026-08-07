@@ -1,0 +1,18 @@
+github_users:
+  - intLyc
+
+repo_description_lines_max: 2
+
+github_repos:
+  - intLyc/MTO-Platform
+  - intLyc/MES-RET
+  - intLyc/CMO-MTO
+  - intLyc/TNG-NES
+  - intLyc/MTEA-DCK
+  - intLyc/MTDE-MKTA
+  - intLyc/MTES-KG
+  - intLyc/MTEA-D-TSD
+  - intLyc/CCEF-ECHT
+  - intLyc/MTEA-SaO
+  - intLyc/MTSRA
+  - intLyc/CMTO-Benchmark

@@ -1,0 +1,7 @@
+# Citation counts per publication.
+# Populated automatically by bin/update_scholar_citations.py (or manually).
+# Format:
+# "scholar_id:paper_id":
+#   citations: N
+#   title: "..."
+#   year: 'YYYY'

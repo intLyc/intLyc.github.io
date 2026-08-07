@@ -1,31 +1,26 @@
 # Yanchi Li — Homepage
 
-Personal academic homepage migrated from GitBook, hosted on GitHub Pages at
-**[https://intLyc.github.io](https://intLyc.github.io)**.
+Personal academic homepage built with the [al-folio](https://github.com/alshedivat/al-folio) Jekyll template, deployed on GitHub Pages at **[https://intLyc.github.io](https://intLyc.github.io)**.
 
 ## Project structure
 
-```
-intLyc.github.io/
-├── index.html            # Main homepage
-├── 404.html              # Custom 404 page
-├── .nojekyll             # Disables Jekyll processing (pure static site)
-├── assets/
-│   ├── css/style.css     # Styles
-│   └── img/
-│       ├── profile.jpg   # Profile photo
-│       └── favicon.svg   # Site favicon
-└── README.md
-```
+| Path                           | Description                                                |
+| ------------------------------ | ---------------------------------------------------------- |
+| `_pages/about.md`              | Homepage content (bio, profile picture, contact)           |
+| `_bibliography/papers.bib`     | Publications (BibTeX)                                      |
+| `_data/socials.yml`            | Social links (GitHub, ResearchGate, Google Scholar, email) |
+| `_data/repositories.yml`       | GitHub repositories shown on the Repositories page         |
+| `_data/venues.yml`             | Venue abbreviations → names/colors for publications        |
+| `_news/`                       | Latest news shown on the homepage                          |
+| `assets/img/prof_pic.jpg`      | Profile photo                                              |
+| `.github/workflows/deploy.yml` | GitHub Actions workflow that builds and deploys the site   |
 
-## How to publish on GitHub Pages
+## Deploy to GitHub Pages
 
-This folder is a Git repository already. To publish:
+The site is built automatically by GitHub Actions (`.github/workflows/deploy.yml`) and published to the `gh-pages` branch.
 
-1. Create a **new public repository** on GitHub named exactly
-   `intLyc.github.io` (your GitHub username + `.github.io`). This special name
-   makes GitHub serve the site automatically at `https://intLyc.github.io`.
-2. Push this folder to that repository:
+1. Create a new **public** repository on GitHub named `intLyc.github.io` (must match your username).
+2. Push this folder to it:
 
    ```bash
    git remote add origin https://github.com/intLyc/intLyc.github.io.git
@@ -33,32 +28,26 @@ This folder is a Git repository already. To publish:
    git push -u origin main
    ```
 
-3. In the repository **Settings → Pages**, choose **Deploy from a branch**
-   (`main` branch, `/` (root) folder). For a `<username>.github.io` repo,
-   Pages is enabled automatically — the site will be live within a few
-   minutes.
-
-> Tip: after pushing, your new homepage will temporarily replace your current
-> GitBook-based site. Keep the old GitBook content backed up until the new
-> site is verified.
-
-## Customize
-
-- **Profile photo**: replace `assets/img/profile.svg` with your photo (e.g.
-  save as `assets/img/profile.jpg`) and update the `<img>` tag in
-  `index.html`. Keep it roughly square (188×188 px works well).
-- **Email**: the email link is in the "About" section of `index.html`.
-- **Publications**: edit the `<li class="pub">` entries in `index.html` to
-  add or update papers.
-- **Colors / fonts**: all design tokens (colors, radius, shadow) are CSS
-  variables at the top of `assets/css/style.css`.
+3. In the repository **Settings → Actions → General → Workflow permissions**, select **Read and write permissions** and save.
+4. In **Settings → Pages**, set **Source** to *Deploy from a branch* and branch to **gh-pages** (the workflow publishes there automatically).
+5. Wait for the "Deploy site" workflow to finish (~4 min), then visit https://intLyc.github.io.
 
 ## Local preview
 
-Open `index.html` in a browser, or run a local server:
+Requires Ruby ≥ 3.1 (the macOS system Ruby is too old; e.g. install via `brew install ruby`):
 
 ```bash
-python3 -m http.server 8000
+bundle install
+bundle exec jekyll serve
 ```
 
-then visit http://localhost:8000.
+Then open http://localhost:4000.
+
+## Customizing
+
+- **Profile photo**: replace `assets/img/prof_pic.jpg` (keep roughly square).
+- **Bio / affiliations**: edit `_pages/about.md`.
+- **Publications**: edit `_bibliography/papers.bib`. Supported extra fields include `abbr`, `html`, `code`, `pdf`, `selected`, `note`, `preview`, etc. (see the al-folio docs).
+- **Social links**: edit `_data/socials.yml`.
+- **News**: add files under `_news/`.
+- **GitHub repositories**: edit `_data/repositories.yml`.

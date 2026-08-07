@@ -1,0 +1,5 @@
+# The CV page is currently disabled (the template demo page was removed).
+# To enable a CV page:
+#   1. Re-create `_pages/cv.md` (see the al-folio template).
+#   2. Fill in your CV data here (JSON Resume format).
+#   3. Optionally add your CV PDF to `assets/pdf/` and reference it in `_pages/cv.md`.
