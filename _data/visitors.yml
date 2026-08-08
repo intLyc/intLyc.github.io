@@ -1,3 +1,6 @@
+countries:
+- country: SG
+  display_country: Singapore
+  visitors: 2
 metadata:
   last_updated: '2026-08-08'
-countries: []
