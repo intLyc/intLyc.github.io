@@ -1,0 +1,9 @@
+{% comment %}
+  Override of the theme's analytics include.
+  Loads the analytics configured in _config.yml (al_analytics tag),
+  then adds the GoatCounter privacy-friendly visitor counter.
+  See https://www.goatcounter.com/
+{% endcomment %}
+{% al_analytics_scripts %}
+<script data-goatcounter="https://intlyc.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>

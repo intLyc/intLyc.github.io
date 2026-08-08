@@ -1,0 +1,75 @@
+name: Update visitors
+
+on:
+  schedule:
+    # Every day at 03:20 UTC (after the citations/stars jobs)
+    - cron: "20 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-visitors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Python 🐍
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Fetch visitor countries 🌍
+        env:
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+        run: |
+          python - <<'EOF'
+          import json
+          import os
+          import urllib.request
+          import yaml
+          from datetime import datetime
+
+          token = os.environ.get("GOATCOUNTER_TOKEN", "")
+          req = urllib.request.Request(
+              "https://intlyc.goatcounter.com/api/v0/stats/countries",
+              headers={
+                  "Authorization": "Bearer " + token,
+                  "User-Agent": "Mozilla/5.0",
+              },
+          )
+          data = json.load(urllib.request.urlopen(req, timeout=30))
+          rows = data.get("countries", data) if isinstance(data, dict) else data
+          countries = [
+              {
+                  "country": c["country"],
+                  "visitors": int(c["visitors"]),
+                  "display_country": c.get("display_country", c["country"]),
+              }
+              for c in rows
+              if c.get("country")
+          ]
+          countries.sort(key=lambda x: -x["visitors"])
+
+          out = {
+              "metadata": {"last_updated": datetime.now().strftime("%Y-%m-%d")},
+              "countries": countries,
+          }
+          with open("_data/visitors.yml", "w") as f:
+              yaml.dump(out, f, width=1000, sort_keys=True)
+          print(f"countries: {len(countries)}")
+          EOF
+
+      - name: Commit changes 💾
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/visitors.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update visitor countries"
+            git push
+          fi

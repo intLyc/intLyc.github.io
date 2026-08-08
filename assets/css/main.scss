@@ -263,6 +263,62 @@ footer.fixed-bottom .container {
   color: var(--global-theme-color);
 }
 
+/* --- Visitors world map (static image + dots) --- */
+.visitors-map-wrap {
+  margin: 0.5rem 0 1rem;
+  text-align: center;
+}
+
+.visitors-map-img {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--global-divider-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.visitors-map-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.visitors-map-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.visitor-dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #1f6feb;
+  opacity: 0.75;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+
+.visitors-stats {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--global-text-color);
+}
+
+.visitors-stat {
+  display: inline-block;
+  margin: 0 0.45rem 0.2rem;
+}
+
+.visitors-stat strong {
+  color: var(--global-theme-color);
+}
+
 /* --- Service blocks (reviewing, research interests) --- */
 .service-group {
   margin-bottom: 1rem;
