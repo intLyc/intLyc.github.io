@@ -23,7 +23,20 @@ latest_posts:
   enabled: false
 ---
 
-**Yanchi Li (李延炽)** is pursuing a Ph.D. degree supervised by Prof. Wenyin Gong and co-supervised by Prof. Qiong Gu, and is currently a visiting Ph.D. student supervised by Prof. Yew-Soon Ong.
+**Yanchi Li (李延炽)** is a Ph.D. candidate at CUG since 2023, supervised by Prof. Wenyin Gong, and co-supervised by Prof. Qiong Gu (HBUAS) and Prof. Yew-Soon Ong (NTU).
+
+{% assign total_citations = 0 %}
+{% for paper in site.data.citations.papers %}
+  {% assign total_citations = total_citations | plus: paper[1].citations %}
+{% endfor %}
+<div class="citation-box">
+  <span class="citation-box-label">Total Citations</span>
+  <span class="citation-box-count">{{ total_citations }}</span>
+</div>
+<div class="citation-box">
+  <span class="citation-box-label">GitHub Stars</span>
+  <span class="citation-box-count">{{ site.data.github.total_stars }}</span>
+</div>
 
 **Email:** int_lyc@cug.edu.cn
 

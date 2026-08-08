@@ -1,0 +1,65 @@
+name: Update GitHub stars
+
+on:
+  schedule:
+    # Every day at 03:10 UTC (slightly after the citations job)
+    - cron: "10 3 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - "_data/repositories.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update-stars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Python 🐍
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Fetch and save total GitHub stars ⭐
+        run: |
+          python - <<'EOF'
+          import json
+          import urllib.request
+          import yaml
+          from datetime import datetime
+
+          url = "https://api.github.com/users/intLyc/repos?per_page=100&type=owner"
+          req = urllib.request.Request(
+              url,
+              headers={"User-Agent": "Mozilla/5.0", "Accept": "application/vnd.github+json"},
+          )
+          data = json.load(urllib.request.urlopen(req, timeout=30))
+          total = sum(r.get("stargazers_count", 0) for r in data)
+
+          out = {
+              "metadata": {"last_updated": datetime.now().strftime("%Y-%m-%d")},
+              "total_stars": total,
+          }
+          with open("_data/github.yml", "w") as f:
+              yaml.dump(out, f, width=1000, sort_keys=True)
+          print(f"total stars: {total}")
+          EOF
+
+      - name: Commit changes 💾
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/github.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update GitHub stars"
+            git push
+          fi

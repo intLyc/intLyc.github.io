@@ -1,7 +1,91 @@
-# Citation counts per publication.
-# Populated automatically by bin/update_scholar_citations.py (or manually).
-# Format:
-# "scholar_id:paper_id":
-#   citations: N
-#   title: "..."
-#   year: 'YYYY'
+metadata:
+  last_updated: '2026-08-08'
+papers:
+  h7hvzUEAAAAJ:0EnyYjriUFMC:
+    citations: 0
+    title: 'Breaking Multi-Task Curse: Reward-Weighted Evolution for Black-Box Many-Task Optimization'
+    year: '2026'
+  h7hvzUEAAAAJ:2osOgNQ5qMEC:
+    citations: 30
+    title: Evolutionary competitive multitasking optimization via improved adaptive differential evolution
+    year: '2023'
+  h7hvzUEAAAAJ:5nxA0vEk-isC:
+    citations: 0
+    title: Topology-Guided Knowledge Transfer for Multiobjective Multitask Optimization
+    year: '2026'
+  h7hvzUEAAAAJ:9yKSN-GCB0IC:
+    citations: 74
+    title: Deep reinforcement learning assisted co-evolutionary differential evolution for constrained optimization
+    year: '2023'
+  h7hvzUEAAAAJ:IjCSPb-OGe4C:
+    citations: 42
+    title: Multitask evolution strategy with knowledge-guided external sampling
+    year: '2023'
+  h7hvzUEAAAAJ:LkGwnXOMwfcC:
+    citations: 3
+    title: Distribution Direction-Assisted Two-Stage Knowledge Transfer for Many-Task Optimization
+    year: '2025'
+  h7hvzUEAAAAJ:Se3iqnhoufwC:
+    citations: 3
+    title: Information entropy based evolutionary multitasking optimization
+    year: '2026'
+  h7hvzUEAAAAJ:Tyk-4Ss8FVUC:
+    citations: 26
+    title: A competitive and cooperative evolutionary framework for ensemble of constraint handling techniques
+    year: '2024'
+  h7hvzUEAAAAJ:UeHWp8X0CEIC:
+    citations: 40
+    title: 'MToP: A MATLAB benchmarking platform for evolutionary multitasking'
+    year: '2023'
+  h7hvzUEAAAAJ:UebtZRa9Y70C:
+    citations: 3
+    title: Multiobjective multitask optimization with manifold structure-driven knowledge transfer
+    year: '2026'
+  h7hvzUEAAAAJ:W7OEmFMy1HYC:
+    citations: 25
+    title: Constrained multitasking optimization via co-evolution and domain adaptation
+    year: '2024'
+  h7hvzUEAAAAJ:WF5omc3nYNoC:
+    citations: 34
+    title: A diversity-enhanced tri-stage framework for constrained multi-objective optimization
+    year: '2024'
+  h7hvzUEAAAAJ:Y0pCki6q_DkC:
+    citations: 14
+    title: Transfer search directions among decomposed subtasks for evolutionary multitasking in multiobjective optimization
+    year: '2024'
+  h7hvzUEAAAAJ:YsMSGLbcyi4C:
+    citations: 21
+    title: Multitask differential evolution with adaptive dual knowledge transfer
+    year: '2024'
+  h7hvzUEAAAAJ:_FxGoFyzp5QC:
+    citations: 20
+    title: Multiobjective multitask optimization via diversity-and convergence-oriented knowledge transfer
+    year: '2025'
+  h7hvzUEAAAAJ:d1gkVwhDpl0C:
+    citations: 22
+    title: 'Evolutionary constrained multi-task optimization: Benchmark problems and preliminary results'
+    year: '2022'
+  h7hvzUEAAAAJ:eQOLeE2rZwMC:
+    citations: 10
+    title: Transfer task-averaged natural gradient for efficient many-task optimization
+    year: '2024'
+  h7hvzUEAAAAJ:hqOjcs7Dif8C:
+    citations: 0
+    title: Ensemble of Transfer Techniques via Adaptive Resource Allocation for Multiobjective Multitask Optimization
+    year: '2026'
+  h7hvzUEAAAAJ:qjMakFHDy7sC:
+    citations: 95
+    title: Multitasking optimization via an adaptive solver multitasking evolutionary framework
+    year: '2023'
+  h7hvzUEAAAAJ:roLk4NBRz8UC:
+    citations: 3
+    title: Progressive auto-encoding for domain adaptation in evolutionary multi-task optimization
+    year: '2025'
+  h7hvzUEAAAAJ:ufrVoPGSRksC:
+    citations: 14
+    title: 'Evolutionary competitive multiobjective multitasking: One-pass optimization of heterogeneous pareto solutions'
+    year: '2025'
+  h7hvzUEAAAAJ:zYLM7Y9cAGgC:
+    citations: 63
+    title: Multiobjective multitask optimization with multiple knowledge types and transfer adaptation
+    year: '2024'
