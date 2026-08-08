@@ -21,6 +21,9 @@ jobs:
         with:
           python-version: "3.13"
 
+      - name: Install dependencies 📦
+        run: pip install pyyaml
+
       - name: Fetch visitor countries 🌍
         env:
           GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
