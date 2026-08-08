@@ -37,23 +37,27 @@ jobs:
 
           token = os.environ.get("GOATCOUNTER_TOKEN", "")
           req = urllib.request.Request(
-              "https://intlyc.goatcounter.com/api/v0/stats/countries",
+              "https://intlyc.goatcounter.com/api/v0/stats/locations?limit=100&start=2000-01-01T00:00:00Z",
               headers={
                   "Authorization": "Bearer " + token,
                   "User-Agent": "Mozilla/5.0",
               },
           )
           data = json.load(urllib.request.urlopen(req, timeout=30))
-          rows = data.get("countries", data) if isinstance(data, dict) else data
-          countries = [
-              {
-                  "country": c["country"],
-                  "visitors": int(c["visitors"]),
-                  "display_country": c.get("display_country", c["country"]),
-              }
-              for c in rows
-              if c.get("country")
-          ]
+          rows = data.get("stats", data) if isinstance(data, dict) else data
+          countries = []
+          for c in rows:
+              raw = c.get("id") or c.get("name") or ""
+              code = raw.split("-")[0][:2].upper()
+              if len(code) != 2:
+                  continue
+              countries.append(
+                  {
+                      "country": code,
+                      "visitors": int(c.get("count", 0)),
+                      "display_country": c.get("name") or code,
+                  }
+              )
           countries.sort(key=lambda x: -x["visitors"])
 
           out = {
