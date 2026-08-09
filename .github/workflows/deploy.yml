@@ -12,26 +12,20 @@ on:
       - "**.js"
       - "**.liquid"
       - "**/*.md"
+      - "**/*.py"
+      - "**/*.sh"
       - "**.yml"
       - "Gemfile"
       - "Gemfile.lock"
-      - "!.github/workflows/axe.yml"
-      - "!.github/workflows/broken-links.yml"
-      - "!.github/workflows/deploy-docker-tag.yml"
-      - "!.github/workflows/deploy-image.yml"
-      - "!.github/workflows/docker-slim.yml"
-      - "!.github/workflows/lighthouse-badger.yml"
-      - "!.github/workflows/prettier.yml"
-      - "!lighthouse_results/**"
-      - "!docs/CONTRIBUTING.md"
-      - "!docs/CUSTOMIZE.md"
-      - "!docs/FAQ.md"
-      - "!docs/INSTALL.md"
+      - "package.json"
+      - "package-lock.json"
+      - "purgecss.config.js"
+      - "requirements.txt"
+      - "test/**"
       - "!README.md"
   schedule:
-    # Best-effort daily rebuild (04:00 UTC = 12:00 Beijing). GitHub `schedule`
-    # events can be unreliable, so the local launchd job (com.intlyc.refresh)
-    # also dispatches a deploy once a day as the guaranteed trigger.
+    # Best-effort daily rebuild (04:00 UTC = 12:00 Singapore/Beijing). The local
+    # launchd job (com.intlyc.refresh) provides an independent daily trigger.
     - cron: "0 4 * * *"
   pull_request:
     branches:
@@ -44,21 +38,16 @@ on:
       - "**.js"
       - "**.liquid"
       - "**/*.md"
+      - "**/*.py"
+      - "**/*.sh"
       - "**.yml"
       - "Gemfile"
       - "Gemfile.lock"
-      - "!.github/workflows/axe.yml"
-      - "!.github/workflows/broken-links.yml"
-      - "!.github/workflows/deploy-docker-tag.yml"
-      - "!.github/workflows/deploy-image.yml"
-      - "!.github/workflows/docker-slim.yml"
-      - "!.github/workflows/lighthouse-badger.yml"
-      - "!.github/workflows/prettier.yml"
-      - "!lighthouse_results/**"
-      - "!docs/CONTRIBUTING.md"
-      - "!docs/CUSTOMIZE.md"
-      - "!docs/FAQ.md"
-      - "!docs/INSTALL.md"
+      - "package.json"
+      - "package-lock.json"
+      - "purgecss.config.js"
+      - "requirements.txt"
+      - "test/**"
       - "!README.md"
   workflow_dispatch:
 
@@ -89,28 +78,45 @@ jobs:
           cache: "npm"
       - name: Install JS deps 📦
         run: npm ci
-      - name: Refresh dynamic data 🔄
-        # Best-effort refresh of stars/visitors on every deploy.
-        # Google Scholar citations are refreshed by the local launchd job
-        # (bin/refresh_local.sh) because Scholar blocks GitHub CI IPs.
-        # (GitHub Actions `schedule` cron is unreliable and may not fire.)
-        # Failures must not block the deploy; the last-known data is kept.
+      - name: Install data refresh deps 📦
+        run: python3 -m pip install --quiet pyyaml==6.0.3
+      - name: Test dynamic data logic 🧪
+        run: python3 -m unittest discover -s test -v
+      - name: Refresh GitHub stars ⭐
+        id: refresh_stars
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
+        run: python3 bin/update_github_stars.py
+      - name: Refresh cumulative visitors 🌍
+        id: refresh_visitors
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        # Google Scholar citations are refreshed by the local launchd job
+        # (bin/refresh_local.sh) because Scholar blocks GitHub CI IPs.
+        env:
+          GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
+        run: python3 bin/update_visitors.py
+      - name: Summarize dynamic data refresh 📋
+        if: always()
+        env:
+          STARS_OUTCOME: ${{ steps.refresh_stars.outcome }}
+          VISITORS_OUTCOME: ${{ steps.refresh_visitors.outcome }}
         run: |
-          python3 -m pip install --quiet pyyaml || echo "pip install skipped"
-          python3 bin/update_github_stars.py || echo "stars refresh skipped"
-          GOATCOUNTER_TOKEN="${{ secrets.GOATCOUNTER_TOKEN }}" python3 bin/update_visitors.py || echo "visitors refresh skipped"
+          {
+            echo "## Dynamic data refresh"
+            echo "- GitHub stars: ${STARS_OUTCOME}"
+            echo "- Cumulative visitors: ${VISITORS_OUTCOME}"
+            echo ""
+            echo "A failed refresh does not block deployment; validated last-known data is retained."
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: Install and Build 🔧
         run: |
           sudo apt-get update && sudo apt-get install -y imagemagick
-          pip3 install --upgrade nbconvert
           export JEKYLL_ENV=production
           bundle exec jekyll build
       - name: Purge unused CSS 🧹
-        run: |
-          npm install -g purgecss
-          purgecss -c purgecss.config.js
+        run: npx --no-install purgecss -c purgecss.config.js
       - name: Add .nojekyll to built site 🧹
         run: touch _site/.nojekyll
       - name: Deploy 🚀

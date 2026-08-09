@@ -1,8 +1,8 @@
 {% comment %}
   Compact visitors world map: bundled static image + CSS-positioned dots
   (no external tiles, no Leaflet attribution).
-  Data comes from _data/visitors.yml, refreshed daily by
-  .github/workflows/update-visitors.yml (GoatCounter API).
+  Data comes from _data/visitors.yml and is refreshed during deployment from
+  GoatCounter's cumulative locations API.
 {% endcomment %}
 <div class="visitors-map-wrap">
   <div class="visitors-map-img">
@@ -22,8 +22,11 @@
   </div>
   {% if site.data.visitors.countries.size > 0 %}
     <div class="visitors-stats">
+      <span class="visitors-period">
+        Cumulative visitors since {{ site.data.visitors.metadata.period_start | date: '%b %-d, %Y' }}:
+      </span>
       {% for c in site.data.visitors.countries limit: 5 %}
-        <span class="visitors-stat">{% if forloop.first %}visitors: {% endif %}<strong>{{ c.display_country }}</strong> {{ c.visitors }}</span>
+        <span class="visitors-stat"><strong>{{ c.display_country }}</strong> {{ c.visitors }}</span>
       {% endfor %}
     </div>
   {% endif %}

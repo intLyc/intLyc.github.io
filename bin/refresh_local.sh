@@ -23,8 +23,12 @@ echo "=== refresh $(date '+%Y-%m-%d %H:%M:%S %z') in $REPO ==="
 
 cd "$REPO" || { echo "repo not found: $REPO"; exit 1; }
 
-# Bring the working tree up to date before writing/pushing.
-git pull --rebase --autostash --quiet || echo "git pull skipped/failed"
+# Bring the dedicated clone up to date before writing or pushing. Continuing on
+# a stale clone only defers the failure to git push and can leave a rebase state.
+if ! git pull --rebase --autostash --quiet; then
+  echo "git pull failed; aborting refresh"
+  exit 1
+fi
 
 # Locate a python3 that has `scholarly` installed (conda base on this Mac).
 PYTHON="${REFRESH_PYTHON:-}"
@@ -41,9 +45,11 @@ PYTHON="${PYTHON:-python3}"
 
 if ! "$PYTHON" bin/update_scholar_citations.py; then
   echo "citations fetch failed (no push)"
-  exit 0
+  exit 1
 fi
 
+LAST_DEPLOY_FILE="$HOME/.intlyc-last-deploy"
+TODAY="$(date '+%Y-%m-%d')"
 PUSHED=0
 if git diff --quiet -- _data/citations.yml; then
   echo "no citation changes"
@@ -54,6 +60,7 @@ else
       commit -m "chore: auto-refresh Google Scholar citations"
   git push --quiet
   echo "pushed citation update (triggers deploy)"
+  echo "$TODAY" > "$LAST_DEPLOY_FILE"
   PUSHED=1
 fi
 
@@ -62,18 +69,18 @@ fi
 # any committed changes), independent of GitHub's unreliable `schedule` cron.
 # Skipped if we already pushed above, because the push itself triggers deploy.
 if [ "$PUSHED" -eq 0 ]; then
-  LAST_DEPLOY_FILE="$HOME/.intlyc-last-deploy"
-  TODAY="$(date '+%Y-%m-%d')"
   if [ "$(cat "$LAST_DEPLOY_FILE" 2>/dev/null || echo none)" != "$TODAY" ]; then
     if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
-      if gh workflow run "Deploy site" --repo intLyc/intLyc.github.io --ref main; then
+      if gh workflow run deploy.yml --repo intLyc/intLyc.github.io --ref main; then
         echo "$TODAY" > "$LAST_DEPLOY_FILE"
         echo "daily deploy dispatched"
       else
         echo "daily deploy dispatch failed"
+        exit 1
       fi
     else
       echo "gh unavailable; skipping daily deploy dispatch"
+      exit 1
     fi
   else
     echo "daily deploy already dispatched today"

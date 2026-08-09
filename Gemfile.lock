@@ -54,9 +54,6 @@ GEM
     al_folio_core (1.0.15)
       jekyll (>= 3.9, < 5.0)
       liquid (>= 4.0, < 6.0)
-    al_folio_cv (1.0.2)
-      jekyll (>= 3.9, < 5.0)
-      liquid (>= 4.0, < 6.0)
     al_folio_distill (1.0.3)
       jekyll (>= 3.9, < 5.0)
       liquid (>= 4.0, < 6.0)
@@ -208,7 +205,6 @@ GEM
       jekyll (>= 3.6, < 5.0)
     jekyll-cache-bust (0.0.1)
       jekyll (>= 3.6, < 5.0)
-    jekyll-email-protect (1.1.0)
     jekyll-feed (0.17.0)
       jekyll (>= 3.7, < 5.0)
     jekyll-get-json (1.0.0)
@@ -216,8 +212,6 @@ GEM
       jekyll (>= 3.0)
     jekyll-imagemagick (1.4.0)
       jekyll (>= 3.4)
-    jekyll-jupyter-notebook (0.0.6)
-      jekyll
     jekyll-link-attributes (2.0.1)
     jekyll-minifier (0.2.2)
       cssminify2 (~> 2.1.0)
@@ -225,8 +219,6 @@ GEM
       jekyll (~> 4.0)
       json-minify (~> 0.0.3)
       terser (~> 1.2.3)
-    jekyll-paginate-v2 (3.0.0)
-      jekyll (>= 3.0, < 5.0)
     jekyll-regex-replace (1.1.0)
     jekyll-sass-converter (3.1.0)
       sass-embedded (~> 1.75)
@@ -364,7 +356,6 @@ DEPENDENCIES
   al_ext_posts (= 1.0.3)
   al_folio_bootstrap_compat (= 1.0.0)
   al_folio_core (= 1.0.15)
-  al_folio_cv (= 1.0.2)
   al_folio_distill (= 1.0.3)
   al_folio_upgrade (= 1.0.3)
   al_icons (= 1.0.0)
@@ -380,14 +371,11 @@ DEPENDENCIES
   jekyll-3rd-party-libraries
   jekyll-archives-v2
   jekyll-cache-bust
-  jekyll-email-protect
   jekyll-feed
   jekyll-get-json
   jekyll-imagemagick
-  jekyll-jupyter-notebook
   jekyll-link-attributes
   jekyll-minifier
-  jekyll-paginate-v2
   jekyll-regex-replace
   jekyll-scholar
   jekyll-sitemap
@@ -412,7 +400,6 @@ CHECKSUMS
   al_ext_posts (1.0.3) sha256=c4956d36071958d30de14f6c368863d3e4190dfe312dba08ff79aa685292420d
   al_folio_bootstrap_compat (1.0.0) sha256=c210ff3087f17344dc864fa9594c737e947b23c6cae9fab3dbd37a87090b98a8
   al_folio_core (1.0.15) sha256=eee5d0afefab5d3e8747b615890d760ed0ab01a1210991118709c4e969ad1326
-  al_folio_cv (1.0.2) sha256=d9b8d3624c0c707a04deaa41972fa88395fa164419bccc44e2dc2488400022fa
   al_folio_distill (1.0.3) sha256=3feb669dd669effec127e1be5385158c5f98062c510980b5c9c802227ec2c247
   al_folio_upgrade (1.0.3) sha256=434ffddb27705852eae0bcaa01a8d007e0ef65472a989d1a33ae759f910f4709
   al_icons (1.0.0) sha256=7a7b6428d18e77b039aa1ae765a3faed0ae27cb646a08c1009b145c31ca5ef2d
@@ -473,14 +460,11 @@ CHECKSUMS
   jekyll-3rd-party-libraries (0.0.1) sha256=331f8d53adbb532a27705d9d4fb719c7f306247c56531fa22c0178f4a445a692
   jekyll-archives-v2 (0.0.8) sha256=5584088b4bd188a6099a2f6940c223f037ddb30e70890fcca1da299395584a7d
   jekyll-cache-bust (0.0.1) sha256=538ffe6d48f56d933b435bf32d4fef19ff1082cae7d6d8bc737fc13a9c86ba8c
-  jekyll-email-protect (1.1.0) sha256=00d620939c710788ae3f71188ef913e0aa7ff0a5a39f48249213ea6215558c8d
   jekyll-feed (0.17.0) sha256=689aab16c877949bb9e7a5c436de6278318a51ecb974792232fd94d8b3acfcc3
   jekyll-get-json (1.0.0) sha256=f6b076a93de9cace89a88617b494bea10e6dbb86331c293d663d37d9b9ae7522
   jekyll-imagemagick (1.4.0) sha256=dcf4ae46ffbeabfac584a5256821e39fc5fae8d651fd5c4a56fef3a2061a7ef4
-  jekyll-jupyter-notebook (0.0.6) sha256=33f757eaad9035bebc5309e23ce2274db089ae8a0d002a53c3acbc5265d322cd
   jekyll-link-attributes (2.0.1) sha256=e25b12e3c2a2960c8cfd9ab33e8df9aa3c4ba86491dbeec48f3cb11b0a0f216d
   jekyll-minifier (0.2.2) sha256=f0a182b98b369492b9d93f1dd064223cf04a10ba31c49e1535f28fe35764ee19
-  jekyll-paginate-v2 (3.0.0) sha256=001be6c1963caa41fed9c2f43b0d47201defa0395381eb8830487c1c2fc4f4e3
   jekyll-regex-replace (1.1.0) sha256=3738e6a0aa07dd3f9b7369e6e38e5d245c623bbd70c31b21e7838c654377a00c
   jekyll-sass-converter (3.1.0) sha256=83925d84f1d134410c11d0c6643b0093e82e3a3cf127e90757a85294a3862443
   jekyll-scholar (7.3.0) sha256=d912e60aa5ab342fb4322772f02674152e2799375612a2aa5f9b2228728fd09b

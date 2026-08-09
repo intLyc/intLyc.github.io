@@ -8,6 +8,8 @@ middle_name:
 last_name: Li
 contact_note: >
   For collaboration or questions, email is the best way to reach me.
+contact_email_user: int_lyc
+contact_email_domain: cug.edu.cn
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Personal homepage of Yanchi Li (李延炽) — Ph.D. candidate at China University of Geosciences (Wuhan) and visiting Ph.D. student at Nanyang Technological University.
 footer_text: >
@@ -15,7 +17,6 @@ footer_text: >
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
 keywords: evolutionary computation, multitask optimization, evolutionary multitasking, evolutionary reinforcement learning # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
-scholar_userid: h7hvzUEAAAAJ # Google Scholar user ID (used by citation badges)
 icon: yl-favicon.svg # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 apple_touch_icon: # image name in /assets/img/ (or a rooted path / absolute URL) used for iOS home-screen bookmarks; needs a real 180x180 PNG, since Safari ignores the emoji favicon above. Left empty, iOS falls back to a screenshot of the page.
 
@@ -35,14 +36,14 @@ repo_theme_dark: dark # https://github.com/stats-organization/github-stats-exten
 # Off by default: addresses are then split at build time so the HTML contains no
 # `user@host` and no `mailto:` for harvesters to scrape, and clicking one copies
 # it to the clipboard instead of opening a mail client.
-# See "Protecting email addresses from scrapers" in docs/CUSTOMIZE.md.
+# Custom contact markup below uses al_email_protect for build-time obfuscation.
 protect_email: true
 
 # Off by default: the free public github-profile-trophy instance is disabled
 # (its Vercel deployment answers HTTP 402 / DEPLOYMENT_DISABLED), so every trophy
 # image 404s. The project itself is still open source and free — self-host it and
 # point external_services.github_profile_trophy_url at your instance, then set
-# enabled: true. See docs/CUSTOMIZE.md.
+# enabled: true.
 repo_trophies:
   enabled: false
   theme_light: flat # https://github.com/ryo-ma/github-profile-trophy
@@ -71,8 +72,6 @@ al_folio:
     source: al-org-dev/distill-template#al-folio
     allow_remote_loader: false
   features:
-    cv:
-      enabled: false
     distill:
       enabled: true
   compat:
@@ -140,10 +139,6 @@ blog_name: al-folio # blog_name will be displayed in your blog page
 blog_description: a simple whitespace theme for academics
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
-
-# Pagination
-pagination:
-  enabled: true
 
 related_blog_posts:
   enabled: true
@@ -254,14 +249,11 @@ plugins:
   - jekyll-3rd-party-libraries
   - jekyll-archives-v2
   - jekyll-cache-bust
-  - jekyll-email-protect
   - jekyll-feed
   - jekyll-get-json
   - jekyll-imagemagick
-  - jekyll-jupyter-notebook
   - jekyll-link-attributes
   - jekyll-minifier
-  - jekyll-paginate-v2
   - jekyll-regex-replace
   - jekyll/scholar
   - jekyll-sitemap
@@ -684,4 +676,3 @@ third_party_libraries:
 # Get external JSON data
 # -----------------------------------------------------------------------------
 # (jsonresume/rendercv CV data files from the template were removed.)
-

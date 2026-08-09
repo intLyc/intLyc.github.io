@@ -1,6 +1,7 @@
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
+
 @charset "utf-8";
 
 /* Built-in Sass modules you'll likely use across partials */
@@ -10,7 +11,7 @@
 /* Configure your design tokens BEFORE loading any of your partials.
    Make sure `_sass/_variables.scss` declares `$max-content-width: 72rem !default;` */
 @use "variables" with (
-  $max-content-width: {{ site.max_width | default:  "930px" }}
+  $max-content-width: {{site.max_width | default: "930px"}}
 );
 
 /* Your project partials — convert these files to `@use "variables";`
@@ -49,9 +50,18 @@ html[data-theme="dark"] {
 
 /* --- Body typography --- */
 body {
-  font-family: "Source Sans 3", "Inter", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC",
-    "Microsoft YaHei", sans-serif;
+  font-family:
+    "Source Sans 3",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
   font-size: 1.05rem;
   font-weight: 500;
   line-height: 1.75;
@@ -69,8 +79,8 @@ h6,
 .post-title,
 .navbar-brand,
 .navbar .navbar-nav .nav-link {
-  font-family: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman",
-    serif;
+  font-family:
+    "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
 }
 
 h1 {
@@ -315,6 +325,12 @@ footer.fixed-bottom .container {
   margin: 0 0.45rem 0.2rem;
 }
 
+.visitors-period {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+
 .visitors-stat strong {
   color: var(--global-theme-color);
 }
@@ -350,7 +366,9 @@ footer.fixed-bottom .container {
   font-weight: 600;
   color: var(--global-text-color);
   line-height: 1.5;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .service-block:hover {

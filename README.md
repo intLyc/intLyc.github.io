@@ -11,6 +11,9 @@ Personal academic homepage built with the [al-folio](https://github.com/alshediv
 | `_data/socials.yml`            | Social links (GitHub, ResearchGate, Google Scholar, email) |
 | `_data/repositories.yml`       | GitHub repositories shown on the Repositories page         |
 | `_data/venues.yml`             | Venue abbreviations → names/colors for publications        |
+| `_data/citations.yml`          | Validated Google Scholar citation snapshot                 |
+| `_data/github.yml`             | Stars across original (non-fork) GitHub repositories       |
+| `_data/visitors.yml`           | Cumulative GoatCounter visitors by country                 |
 | `_news/`                       | Latest news shown on the homepage                          |
 | `assets/img/prof_pic.jpg`      | Profile photo                                              |
 | `.github/workflows/deploy.yml` | GitHub Actions workflow that builds and deploys the site   |
@@ -29,12 +32,12 @@ The site is built automatically by GitHub Actions (`.github/workflows/deploy.yml
    ```
 
 3. In the repository **Settings → Actions → General → Workflow permissions**, select **Read and write permissions** and save.
-4. In **Settings → Pages**, set **Source** to *Deploy from a branch* and branch to **gh-pages** (the workflow publishes there automatically).
+4. In **Settings → Pages**, set **Source** to _Deploy from a branch_ and branch to **gh-pages** (the workflow publishes there automatically).
 5. Wait for the "Deploy site" workflow to finish (~4 min), then visit https://intLyc.github.io.
 
 ## Local preview
 
-Requires Ruby ≥ 3.1 (the macOS system Ruby is too old; e.g. install via `brew install ruby`):
+Requires Ruby ≥ 3.2 (the macOS system Ruby is too old; e.g. install via `brew install ruby`):
 
 ```bash
 bundle install
@@ -42,6 +45,18 @@ bundle exec jekyll serve
 ```
 
 Then open http://localhost:4000.
+
+## Dynamic data
+
+- GitHub stars and cumulative GoatCounter visitors are validated and refreshed during each deployment. A failed refresh retains the last known-good snapshot and is reported in the Actions job summary.
+- Visitor totals start at `2026-08-08T00:00:00Z`, when GoatCounter tracking was enabled. Override `GOATCOUNTER_START` only when intentionally changing this baseline.
+- Google Scholar is refreshed by `bin/refresh_local.sh` from a residential IP because Scholar blocks many datacenter addresses. Complete or decreasing snapshots are rejected unless an intentional Scholar profile removal is explicitly confirmed.
+
+Run the data regression tests and formatting checks with:
+
+```bash
+npm test
+```
 
 ## Customizing
 

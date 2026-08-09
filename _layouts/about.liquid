@@ -67,7 +67,17 @@ profile_image_class sizes=sizes alt=page.profile.image
     <!-- Social -->
     {% if page.social %}
       <div class="social">
-        <div class="contact-icons">{% social_links %}</div>
+        <div class="contact-icons">
+          <a
+            href="#"
+            class="al-email-protect"
+            data-eu="{{ site.contact_email_user | escape }}"
+            data-ed="{{ site.contact_email_domain | escape }}"
+            title="Copy email address"
+            aria-label="Copy email address"
+          ><i class="fa-solid fa-envelope"></i></a>
+          {% social_links %}
+        </div>
 
         <div class="contact-note">{{ site.contact_note }}</div>
       </div>

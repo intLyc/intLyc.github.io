@@ -27,8 +27,9 @@ latest_posts:
 
 {% assign total_citations = 0 %}
 {% for paper in site.data.citations.papers %}
-  {% assign total_citations = total_citations | plus: paper[1].citations %}
+{% assign total_citations = total_citations | plus: paper[1].citations %}
 {% endfor %}
+
 <div class="citation-box">
   <span class="citation-box-label">Total Citations</span>
   <span class="citation-box-count">{{ total_citations }}</span>
@@ -38,7 +39,8 @@ latest_posts:
   <span class="citation-box-count">{{ site.data.github.total_stars }}</span>
 </div>
 
-**Email:** int_lyc@cug.edu.cn
+{% assign contact_email = site.contact_email_user | append: '@' | append: site.contact_email_domain %}
+**Email:** {% al_email_protect_link contact_email %}
 
 ## Research Interests
 

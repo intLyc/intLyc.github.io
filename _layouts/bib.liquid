@@ -156,12 +156,9 @@
       {% if entry.annotation %}
         <i
           class="fa-solid fa-circle-info ml-1"
-          data-toggle="popover"
-          data-placement="top"
-          data-html="true"
-          data-content="{{ entry.annotation | escape }}"
-        >
-        </i>
+          title="{{ entry.annotation | strip_html | escape }}"
+          aria-label="{{ entry.annotation | strip_html | escape }}"
+        ></i>
       {% endif %}
     </div>
 
@@ -260,7 +257,7 @@
       {% endif %}
       {% if site.enable_publication_badges.google_scholar and entry.google_scholar_id %}
         {% assign citation_count = 0 %}
-        {% assign scholar_id_key = site.scholar_userid | append: ':' | append: entry.google_scholar_id %}
+        {% assign scholar_id_key = site.data.socials.scholar_userid | append: ':' | append: entry.google_scholar_id %}
         {% assign publication_key = entry.google_scholar_id %}
         {% if site.data.citations.papers[scholar_id_key] %}
           {% assign citation_count = site.data.citations.papers[scholar_id_key].citations %}
