@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-08'
+  last_updated: '2026-08-09'
 papers:
   h7hvzUEAAAAJ:0EnyYjriUFMC:
     citations: 0
@@ -18,7 +18,7 @@ papers:
     title: Deep reinforcement learning assisted co-evolutionary differential evolution for constrained optimization
     year: '2023'
   h7hvzUEAAAAJ:IjCSPb-OGe4C:
-    citations: 42
+    citations: 43
     title: Multitask evolution strategy with knowledge-guided external sampling
     year: '2023'
   h7hvzUEAAAAJ:LkGwnXOMwfcC:
