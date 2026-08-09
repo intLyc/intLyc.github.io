@@ -93,6 +93,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
+          python3 -m pip install --quiet pyyaml || echo "pip install skipped"
           python3 bin/update_github_stars.py || echo "stars refresh skipped"
           GOATCOUNTER_TOKEN="${{ secrets.GOATCOUNTER_TOKEN }}" python3 bin/update_visitors.py || echo "visitors refresh skipped"
       - name: Install and Build 🔧
