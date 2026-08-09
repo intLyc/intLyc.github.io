@@ -33,7 +33,6 @@ on:
     # events can be unreliable, so the local launchd job (com.intlyc.refresh)
     # also dispatches a deploy once a day as the guaranteed trigger.
     - cron: "0 4 * * *"
-  workflow_dispatch:
   pull_request:
     branches:
       - master
