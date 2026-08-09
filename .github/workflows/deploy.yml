@@ -28,6 +28,12 @@ on:
       - "!docs/FAQ.md"
       - "!docs/INSTALL.md"
       - "!README.md"
+  schedule:
+    # Best-effort daily rebuild (04:00 UTC = 12:00 Beijing). GitHub `schedule`
+    # events can be unreliable, so the local launchd job (com.intlyc.refresh)
+    # also dispatches a deploy once a day as the guaranteed trigger.
+    - cron: "0 4 * * *"
+  workflow_dispatch:
   pull_request:
     branches:
       - master
