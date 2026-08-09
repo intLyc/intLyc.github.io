@@ -10,8 +10,9 @@ import os
 import sys
 import urllib.error
 import urllib.request
-import yaml
 from datetime import datetime
+
+import yaml
 
 SITE = "intlyc.goatcounter.com"
 

@@ -2,20 +2,25 @@
 """Fetch total GitHub stars for the user's repos and write _data/github.yml."""
 
 import json
+import os
 import sys
 import urllib.request
-import yaml
 from datetime import datetime
+
+import yaml
 
 OWNER = "intLyc"
 
 
 def main() -> None:
     url = f"https://api.github.com/users/{OWNER}/repos?per_page=100&type=owner"
-    req = urllib.request.Request(
-        url,
-        headers={"User-Agent": "Mozilla/5.0", "Accept": "application/vnd.github+json"},
-    )
+    # Authenticate with GITHUB_TOKEN when available (CI): unauthenticated
+    # requests from shared runner IPs hit the 60 req/h rate limit (HTTP 403).
+    headers = {"User-Agent": "Mozilla/5.0", "Accept": "application/vnd.github+json"}
+    token = os.environ.get("GITHUB_TOKEN", "")
+    if token:
+        headers["Authorization"] = "Bearer " + token
+    req = urllib.request.Request(url, headers=headers)
     data = json.load(urllib.request.urlopen(req, timeout=30))
     total = sum(r.get("stargazers_count", 0) for r in data)
 

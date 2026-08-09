@@ -32,6 +32,8 @@ jobs:
         run: pip install pyyaml
 
       - name: Fetch and save total GitHub stars ⭐
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: python bin/update_github_stars.py
 
       - name: Commit changes 💾

@@ -1,17 +1,10 @@
 name: Update citations
 
 on:
-  schedule:
-    # Every day at 03:00 UTC
-    - cron: "0 3 * * *"
+  # Manual trigger only. Google Scholar blocks GitHub CI IPs, so scheduled
+  # runs would always fail with "Cannot Fetch from Google Scholar".
+  # Use the local launchd job (bin/refresh_local.sh) for automatic updates.
   workflow_dispatch:
-  push:
-    branches:
-      - master
-      - main
-    paths:
-      - "_bibliography/**"
-      - "bin/update_scholar_citations.py"
 
 permissions:
   contents: write
