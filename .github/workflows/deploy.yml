@@ -84,6 +84,15 @@ jobs:
           cache: "npm"
       - name: Install JS deps 📦
         run: npm ci
+      - name: Refresh dynamic data 🔄
+        # Best-effort refresh of citations/stars/visitors on every deploy
+        # (GitHub Actions `schedule` cron is unreliable and may not fire).
+        # Failures must not block the deploy; the last-known data is kept.
+        run: |
+          pip3 install --quiet scholarly pyyaml || echo "pip install skipped"
+          python3 bin/update_scholar_citations.py || echo "citations refresh skipped"
+          python3 bin/update_github_stars.py || echo "stars refresh skipped"
+          GOATCOUNTER_TOKEN="${{ secrets.GOATCOUNTER_TOKEN }}" python3 bin/update_visitors.py || echo "visitors refresh skipped"
       - name: Install and Build 🔧
         run: |
           sudo apt-get update && sudo apt-get install -y imagemagick

@@ -28,53 +28,7 @@ jobs:
       - name: Fetch visitor countries 🌍
         env:
           GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
-        run: |
-          python - <<'EOF'
-          import json
-          import os
-          import urllib.error
-          import urllib.request
-          import yaml
-          from datetime import datetime
-
-          token = os.environ.get("GOATCOUNTER_TOKEN", "")
-          req = urllib.request.Request(
-              "https://intlyc.goatcounter.com/api/v0/stats/locations?limit=100",
-              headers={
-                  "Authorization": "Bearer " + token,
-                  "User-Agent": "Mozilla/5.0",
-              },
-          )
-          try:
-              data = json.load(urllib.request.urlopen(req, timeout=30))
-          except urllib.error.HTTPError as e:
-              print("HTTP", e.code)
-              print(e.read().decode("utf-8", "replace")[:1000])
-              raise
-          rows = data.get("stats", data) if isinstance(data, dict) else data
-          countries = []
-          for c in rows:
-              raw = c.get("id") or c.get("name") or ""
-              code = raw.split("-")[0][:2].upper()
-              if len(code) != 2:
-                  continue
-              countries.append(
-                  {
-                      "country": code,
-                      "visitors": int(c.get("count", 0)),
-                      "display_country": c.get("name") or code,
-                  }
-              )
-          countries.sort(key=lambda x: -x["visitors"])
-
-          out = {
-              "metadata": {"last_updated": datetime.now().strftime("%Y-%m-%d")},
-              "countries": countries,
-          }
-          with open("_data/visitors.yml", "w") as f:
-              yaml.dump(out, f, width=1000, sort_keys=True)
-          print(f"countries: {len(countries)}")
-          EOF
+        run: python bin/update_visitors.py
 
       - name: Commit changes 💾
         id: commit
