@@ -5,7 +5,7 @@
     "test": "npm run test:data && npm run lint:prettier"
   },
   "devDependencies": {
-    "@shopify/prettier-plugin-liquid": "^1.10.0",
+    "@shopify/prettier-plugin-liquid": "^1.11.0",
     "prettier": "^3.8.0",
     "purgecss": "8.0.0"
   }
