@@ -126,7 +126,7 @@ analytics:
   pirsch: # your Pirsch analytics site ID (length 32 characters)
   openpanel: # your Openpanel analytics client ID (format: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
   cloudflare: # your Cloudflare Web Analytics beacon token (32 hex characters)
-enable_simple_analytics: true # Simple Analytics identifies a site by its domain, so it has no ID to set above
+enable_simple_analytics: false # GoatCounter (see _includes/plugins/al_analytics_scripts.liquid) is the only analytics; Simple Analytics was double-counting visits
 
 # For Google Search Console, see https://support.google.com/webmasters/answer/9008080?hl=en#meta_tag_verification&zippy=%2Chtml-tag
 google_site_verification: # your google-site-verification ID (Google Search Console)
@@ -166,7 +166,7 @@ giscus:
   lang: en
 
 # Disqus comments (DEPRECATED)
-disqus_shortname: al-folio # put your disqus shortname
+disqus_shortname: # put your disqus shortname (left empty: no blog/comments on this site)
 # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 # External sources.
