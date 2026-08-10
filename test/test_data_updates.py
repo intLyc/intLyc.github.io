@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import io
+import json
 import os
 import sys
 import tempfile
 import unittest
+import urllib.error
 from pathlib import Path
 from unittest import mock
 
@@ -74,6 +77,83 @@ class DataUpdateTests(unittest.TestCase):
         ):
             update_visitors.main()
         self.assertEqual(output.read_bytes(), before)
+
+    def test_visitors_retry_transient_404_then_succeed(self) -> None:
+        error = urllib.error.HTTPError(
+            "https://example.test/locations",
+            404,
+            "Not Found",
+            {},
+            io.BytesIO(b'{"error":"not found"}'),
+        )
+        response = io.BytesIO(
+            json.dumps(
+                {
+                    "stats": [{"id": "SG", "name": "Singapore", "count": 25}],
+                    "more": False,
+                }
+            ).encode("utf-8")
+        )
+        with (
+            mock.patch.object(update_visitors.urllib.request, "urlopen", side_effect=[error, response])
+            as urlopen,
+            mock.patch.object(update_visitors.time, "sleep") as sleep,
+        ):
+            result = update_visitors._get_json("https://example.test/locations", "token")
+
+        self.assertEqual(result["stats"][0]["count"], 25)
+        self.assertEqual(urlopen.call_count, 2)
+        sleep.assert_called_once_with(1)
+
+    def test_visitors_exhausted_404_preserves_fallback_snapshot(self) -> None:
+        output = self.root / "visitors.yml"
+        original = {
+            "countries": [{"country": "SG", "display_country": "Singapore", "visitors": 25}],
+            "metadata": {
+                "last_updated": "2026-08-10",
+                "period_start": update_visitors.DEFAULT_START,
+                "total_visitors": 25,
+            },
+        }
+        data_utils.atomic_dump_yaml(output, original)
+        before = output.read_bytes()
+        errors = [
+            urllib.error.HTTPError(
+                "https://example.test/locations",
+                404,
+                "Not Found",
+                {},
+                io.BytesIO(b'{"error":"not found"}'),
+            )
+            for _ in range(update_visitors.MAX_ATTEMPTS)
+        ]
+        with (
+            mock.patch.object(update_visitors, "OUTPUT_FILE", output),
+            mock.patch.object(update_visitors.urllib.request, "urlopen", side_effect=errors)
+            as urlopen,
+            mock.patch.object(update_visitors.time, "sleep") as sleep,
+            mock.patch.dict(os.environ, {"GOATCOUNTER_TOKEN": "token"}, clear=False),
+            self.assertRaises(urllib.error.HTTPError),
+        ):
+            update_visitors.main()
+
+        self.assertEqual(urlopen.call_count, update_visitors.MAX_ATTEMPTS)
+        self.assertEqual(sleep.call_count, update_visitors.MAX_ATTEMPTS - 1)
+        self.assertEqual(output.read_bytes(), before)
+        with mock.patch.object(update_visitors, "OUTPUT_FILE", output):
+            update_visitors.validate_output_snapshot()
+
+    def test_visitors_reject_invalid_fallback_total(self) -> None:
+        invalid = {
+            "countries": [{"country": "SG", "display_country": "Singapore", "visitors": 25}],
+            "metadata": {
+                "last_updated": "2026-08-10",
+                "period_start": update_visitors.DEFAULT_START,
+                "total_visitors": 2,
+            },
+        }
+        with self.assertRaises(data_utils.DataValidationError):
+            update_visitors.validate_snapshot(invalid)
 
     def test_github_paginates_and_excludes_forks(self) -> None:
         output = self.root / "github.yml"
