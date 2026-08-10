@@ -1,7 +1,7 @@
 countries:
 - country: SG
   display_country: Singapore
-  visitors: 18
+  visitors: 24
 - country: US
   display_country: United States
   visitors: 5
@@ -14,4 +14,4 @@ countries:
 metadata:
   last_updated: '2026-08-10'
   period_start: '2026-08-08T00:00:00Z'
-  total_visitors: 25
+  total_visitors: 31
