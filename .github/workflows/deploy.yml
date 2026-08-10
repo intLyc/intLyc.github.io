@@ -97,6 +97,25 @@ jobs:
         env:
           GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
         run: python3 bin/update_visitors.py
+      - name: Validate visitor fallback snapshot 🛡️
+        if: github.event_name != 'pull_request'
+        run: python3 bin/update_visitors.py --validate-snapshot
+      - name: Persist latest visitor snapshot 💾
+        if: >-
+          github.event_name != 'pull_request' &&
+          github.ref == 'refs/heads/main' &&
+          steps.refresh_visitors.outcome == 'success'
+        run: |
+          if git diff --quiet -- _data/visitors.yml; then
+            echo "Visitor snapshot is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/visitors.yml
+          git commit -m "chore: persist visitor snapshot [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
       - name: Summarize dynamic data refresh 📋
         if: always()
         env:
@@ -108,7 +127,7 @@ jobs:
             echo "- GitHub stars: ${STARS_OUTCOME}"
             echo "- Cumulative visitors: ${VISITORS_OUTCOME}"
             echo ""
-            echo "A failed refresh does not block deployment; validated last-known data is retained."
+            echo "A failed refresh deploys the validated snapshot from the last successful refresh."
           } >> "$GITHUB_STEP_SUMMARY"
       - name: Install and Build 🔧
         run: |

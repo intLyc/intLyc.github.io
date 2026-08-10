@@ -1,8 +1,17 @@
 countries:
 - country: SG
   display_country: Singapore
-  visitors: 2
+  visitors: 18
+- country: US
+  display_country: United States
+  visitors: 5
+- country: CN
+  display_country: China
+  visitors: 1
+- country: FR
+  display_country: France
+  visitors: 1
 metadata:
-  last_updated: '2026-08-08'
+  last_updated: '2026-08-10'
   period_start: '2026-08-08T00:00:00Z'
-  total_visitors: 2
+  total_visitors: 25

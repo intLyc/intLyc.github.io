@@ -48,7 +48,7 @@ Then open http://localhost:4000.
 
 ## Dynamic data
 
-- GitHub stars and cumulative GoatCounter visitors are validated and refreshed during each deployment. A failed refresh retains the last known-good snapshot and is reported in the Actions job summary.
+- GitHub stars and cumulative GoatCounter visitors are validated and refreshed during each deployment. Transient GoatCounter failures are retried; every successful visitor snapshot is committed back to `main`, and a failed refresh deploys that validated last-known-good snapshot instead of reverting to seed data.
 - Visitor totals start at `2026-08-08T00:00:00Z`, when GoatCounter tracking was enabled. Override `GOATCOUNTER_START` only when intentionally changing this baseline.
 - Google Scholar is refreshed by `bin/refresh_local.sh` from a residential IP because Scholar blocks many datacenter addresses. Complete or decreasing snapshots are rejected unless an intentional Scholar profile removal is explicitly confirmed.
 
