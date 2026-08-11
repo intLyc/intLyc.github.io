@@ -224,15 +224,20 @@ footer {
 
 /* --- About-only footer: quiet, inline text without a contrast bar --- */
 footer.about-footer {
+  width: 100%;
   margin-top: 2.5rem;
   padding: 0.75rem 0 1.25rem;
   color: var(--global-text-color-light);
   background: transparent;
   font-size: 0.75rem;
   line-height: 1.5;
+  text-align: center;
 }
 
 footer.about-footer .container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
   padding: 0;
   color: inherit;
   text-align: center;
