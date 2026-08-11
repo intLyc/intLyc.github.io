@@ -1,0 +1,8 @@
+{% if page.layout == 'about' %}
+  <footer class="about-footer" role="contentinfo">
+    <div class="container">
+      &copy; {{ site.time | date: '%Y' }} {{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}. {{ site.footer_text }}
+      {% if site.last_updated %}Last updated: {{ 'now' | date: '%B %d, %Y' }}.{% endif %}
+    </div>
+  </footer>
+{% endif %}

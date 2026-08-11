@@ -222,14 +222,29 @@ footer {
   line-height: 1.8;
 }
 
-/* --- Footer: more compact --- */
-footer.fixed-bottom {
-  font-size: 0.68rem;
+/* --- About-only footer: quiet, inline text without a contrast bar --- */
+footer.about-footer {
+  margin-top: 2.5rem;
+  padding: 0.75rem 0 1.25rem;
+  color: var(--global-text-color-light);
+  background: transparent;
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
-footer.fixed-bottom .container {
-  padding-top: 5px;
-  padding-bottom: 5px;
+footer.about-footer .container {
+  padding: 0;
+  color: inherit;
+  text-align: center;
+}
+
+footer.about-footer a {
+  color: inherit;
+}
+
+footer.about-footer a:hover {
+  color: var(--global-theme-color);
+  text-decoration: none;
 }
 
 /* --- Profile image: reasonable size on mobile --- */
