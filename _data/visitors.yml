@@ -4,7 +4,7 @@ countries:
   visitors: 31
 - country: US
   display_country: United States
-  visitors: 6
+  visitors: 7
 - country: CN
   display_country: China
   visitors: 1
@@ -14,4 +14,4 @@ countries:
 metadata:
   last_updated: '2026-08-11'
   period_start: '2026-08-08T00:00:00Z'
-  total_visitors: 39
+  total_visitors: 40
