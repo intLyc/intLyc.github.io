@@ -404,9 +404,20 @@ footer.fixed-bottom .container {
 }
 
 .links button.bibtex-copy {
+  appearance: none;
   font-family: inherit;
-  line-height: inherit;
+  line-height: 1.5;
   cursor: pointer;
+  color: var(--global-text-color);
+  background-color: transparent;
+  border: 1px solid var(--global-text-color);
+  padding: 0.25rem 1rem;
+  margin-left: 0;
+}
+
+.links button.bibtex-copy:hover {
+  color: var(--global-theme-color);
+  border-color: var(--global-theme-color);
 }
 
 .links button.bibtex-copy.is-copied {
