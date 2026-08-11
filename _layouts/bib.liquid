@@ -255,6 +255,18 @@
       {% if entry.code %}
         <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button"><i class="fa-solid fa-code"></i> Code</a>
       {% endif %}
+      {% assign publication_bibtex = site.data.publication_bibtex[entry.key] %}
+      {% if publication_bibtex %}
+        <button
+          type="button"
+          class="bibtex-copy btn btn-sm z-depth-0"
+          data-bibtex-copy
+          data-bibtex-target="bibtex-{{ entry.key }}"
+          aria-label="Copy BibTeX citation for {{ entry.title | strip_html | escape }}"
+          title="Copy BibTeX citation"
+        ><i class="fa-solid fa-copy" aria-hidden="true"></i><span class="bibtex-copy-label">BibTeX</span></button>
+        <script type="text/plain" id="bibtex-{{ entry.key }}">{{ publication_bibtex }}</script>
+      {% endif %}
       {% if site.enable_publication_badges.google_scholar and entry.google_scholar_id %}
         {% assign citation_count = 0 %}
         {% assign scholar_id_key = site.data.socials.scholar_userid | append: ':' | append: entry.google_scholar_id %}

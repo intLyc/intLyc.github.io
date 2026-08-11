@@ -1,0 +1,160 @@
+li2026breaking: |-
+  @inproceedings{Li2026MES-RET,
+    author = {Li, Yanchi and Liu, Jiao and Gong, Wenyin and Gu, Qiong and Zhao, Yue and Ong, Yew-Soon},
+    booktitle = {Forty-third International Conference on Machine Learning},
+    title = {Breaking Multi-Task Curse: Reward-Weighted Evolution for Black-Box Many-Task Optimization},
+    year = {2026},
+    url = {https://openreview.net/forum?id=lkGnJhXUNu}
+  }
+
+li2026mtop: |-
+  @article{Li2026MToP,
+    author = {Li, Yanchi and Gong, Wenyin and Zhang, Tingyu and Ming, Fei and Li, Shuijia and Gu, Qiong and Ong, Yew-Soon},
+    journal = {ACM Transactions on Evolutionary Learning and Optimization},
+    title = {{MToP}: A {MATLAB} Benchmarking Platform for Evolutionary Multitasking},
+    year = {2026},
+    issn = {2688-299X},
+    address = {New York, NY, USA},
+    doi = {10.1145/3812535},
+    publisher = {Association for Computing Machinery}
+  }
+
+li2025cmo: |-
+  @article{Li2025CMO-MTO,
+    author = {Li, Yanchi and Wu, Xinyi and Gong, Wenyin and Xu, Meng and Wang, Yubo and Gu, Qiong},
+    journal = {IEEE Transactions on Evolutionary Computation},
+    title = {Evolutionary Competitive Multiobjective Multitasking: One-Pass Optimization of Heterogeneous Pareto Solutions},
+    year = {2025},
+    number = {6},
+    pages = {2757-2770},
+    volume = {29},
+    doi = {10.1109/TEVC.2024.3524508}
+  }
+
+gu2025pae: |-
+  @article{Gu2025MTEA-PAE,
+    author = {Gu, Qiong and Li, Yanchi and Gong, Wenyin and Yuan, Zhiyuan and Ning, Bin and Hu, Chunyang and Wu, Jicheng},
+    journal = {Applied Soft Computing},
+    title = {Progressive Auto-Encoding for Domain Adaptation in Evolutionary Multi-Task Optimization},
+    year = {2025},
+    issn = {1568-4946},
+    pages = {113916},
+    doi = {10.1016/j.asoc.2025.113916},
+    url = {https://www.sciencedirect.com/science/article/pii/S1568494625012293}
+  }
+
+li2025tng: |-
+  @article{Li2024TNG-NES,
+    author = {Li, Yanchi and Gong, Wenyin and Gu, Qiong},
+    journal = {IEEE Transactions on Evolutionary Computation},
+    title = {Transfer Task-averaged Natural Gradient for Efficient Many-task Optimization},
+    year = {2025},
+    number = {5},
+    pages = {1952-1965},
+    volume = {29},
+    doi = {10.1109/TEVC.2024.3459862}
+  }
+
+li2025dck: |-
+  @article{Li2025MTEA-DCK,
+    author = {Li, Yanchi and Li, Dongcheng and Gong, Wenyin and Gu, Qiong},
+    journal = {IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+    title = {Multiobjective Multitask Optimization via Diversity- and Convergence-Oriented Knowledge Transfer},
+    year = {2025},
+    number = {3},
+    pages = {2367-2379},
+    volume = {55},
+    doi = {10.1109/TSMC.2024.3520526}
+  }
+
+li2025mkta: |-
+  @article{Li2025MTDE-MKTA,
+    author = {Li, Yanchi and Gong, Wenyin},
+    journal = {IEEE Transactions on Evolutionary Computation},
+    title = {Multiobjective Multitask Optimization With Multiple Knowledge Types and Transfer Adaptation},
+    year = {2025},
+    number = {1},
+    pages = {205-216},
+    volume = {29},
+    doi = {10.1109/TEVC.2024.3353319}
+  }
+
+li2024mteskg: |-
+  @article{Li2024MTES-KG,
+    author = {Li, Yanchi and Gong, Wenyin and Li, Shuijia},
+    journal = {IEEE Transactions on Evolutionary Computation},
+    title = {Multitask Evolution Strategy With Knowledge-Guided External Sampling},
+    year = {2024},
+    number = {6},
+    pages = {1733-1745},
+    volume = {28},
+    doi = {10.1109/TEVC.2023.3330265}
+  }
+
+li2024tsd: |-
+  @inproceedings{Li2024MTEA-D-TSD,
+    author = {Li, Yanchi and Gong, Wenyin and Gu, Qiong},
+    booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference},
+    title = {Transfer Search Directions Among Decomposed Subtasks for Evolutionary Multitasking in Multiobjective Optimization},
+    year = {2024},
+    address = {New York, NY, USA},
+    pages = {557–565},
+    publisher = {Association for Computing Machinery},
+    series = {GECCO '24},
+    doi = {10.1145/3638529.3653989},
+    isbn = {9798400704949},
+    location = {Melbourne, VIC, Australia},
+    numpages = {9}
+  }
+
+li2024ccef: |-
+  @article{Li2024CCEF-ECHT,
+    author = {Li, Yanchi and Gong, Wenyin and Hu, Zhenzhen and Li, Shuijia},
+    journal = {IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+    title = {A Competitive and Cooperative Evolutionary Framework for Ensemble of Constraint Handling Techniques},
+    year = {2024},
+    number = {4},
+    pages = {2440-2451},
+    volume = {54},
+    doi = {10.1109/TSMC.2023.3343778}
+  }
+
+li2023sao: |-
+  @article{Li2023MTEA-SaO,
+    author = {Li, Yanchi and Gong, Wenyin and Li, Shuijia},
+    journal = {Information Sciences},
+    title = {Multitasking Optimization via an Adaptive Solver Multitasking Evolutionary Framework},
+    year = {2023},
+    issn = {0020-0255},
+    pages = {688-712},
+    volume = {630},
+    doi = {10.1016/j.ins.2022.10.099}
+  }
+
+li2023mtsra: |-
+  @article{Li2023MTSRA,
+    author = {Li, Yanchi and Gong, Wenyin and Li, Shuijia},
+    journal = {Expert Systems with Applications},
+    title = {Evolutionary Competitive Multitasking Optimization via Improved Adaptive Differential Evolution},
+    year = {2023},
+    issn = {0957-4174},
+    pages = {119550},
+    volume = {217},
+    doi = {10.1016/j.eswa.2023.119550}
+  }
+
+li2022cmto: |-
+  @inproceedings{Li2022CMTO-Benchmark,
+    author = {Li, Yanchi and Gong, Wenyin and Li, Shuijia},
+    booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference Companion},
+    title = {Evolutionary Constrained Multi-Task Optimization: Benchmark Problems and Preliminary Results},
+    year = {2022},
+    address = {New York, NY, USA},
+    pages = {443–446},
+    publisher = {Association for Computing Machinery},
+    series = {GECCO '22},
+    doi = {10.1145/3520304.3528890},
+    isbn = {9781450392686},
+    location = {Boston, Massachusetts},
+    numpages = {4}
+  }

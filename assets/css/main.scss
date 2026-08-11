@@ -391,14 +391,30 @@ footer.fixed-bottom .container {
 }
 
 /* --- Publication link buttons: match body text weight --- */
-.links a.btn {
+.links :is(a, button).btn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   font-weight: 500;
 }
 
-.links a.btn i {
+.links :is(a, button).btn i {
   font-size: 0.85rem;
   line-height: 1;
+}
+
+.links button.bibtex-copy {
+  font-family: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+.links button.bibtex-copy.is-copied {
+  color: var(--global-theme-color);
+  border-color: var(--global-theme-color);
+}
+
+.links button.bibtex-copy.is-copy-error {
+  color: var(--global-danger-color, #dc3545);
+  border-color: var(--global-danger-color, #dc3545);
 }

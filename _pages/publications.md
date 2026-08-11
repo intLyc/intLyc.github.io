@@ -18,3 +18,5 @@ nav_order: 2
 {% bibliography %}
 
 </div>
+
+<script defer src="{{ '/assets/js/bibtex-copy.js' | relative_url | bust_file_cache }}"></script>
