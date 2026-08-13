@@ -208,6 +208,88 @@ class DataUpdateTests(unittest.TestCase):
         self.assertEqual(result["papers"]["user-id:paper-id"]["citations"], 1)
         self.assertEqual(result["metadata"]["paper_count"], 1)
 
+    def test_scholar_public_profile_parser_handles_cited_and_uncited_papers(self) -> None:
+        profile_html = """
+        <table>
+          <tr class="gsc_a_tr">
+            <td class="gsc_a_t"><a class="gsc_a_at"
+              href="/citations?citation_for_view=user-id%3Apaper-one&amp;hl=en">Paper One</a></td>
+            <td class="gsc_a_c"><a class="gsc_a_ac">12</a></td>
+            <td class="gsc_a_y"><span>2025</span></td>
+          </tr>
+          <tr class="gsc_a_tr">
+            <td class="gsc_a_t"><a class="gsc_a_at"
+              href="/citations?citation_for_view=user-id%3Apaper-two&amp;hl=en">Paper &amp; Two</a></td>
+            <td class="gsc_a_c"><a class="gsc_a_ac"></a></td>
+            <td class="gsc_a_y"><span>2026</span></td>
+          </tr>
+        </table>
+        """
+
+        publications = update_scholar_citations.parse_public_profile(profile_html)
+
+        self.assertEqual(len(publications), 2)
+        self.assertEqual(publications[0]["pub_id"], "user-id:paper-one")
+        self.assertEqual(publications[0]["num_citations"], 12)
+        self.assertEqual(publications[0]["bib"]["title"], "Paper One")
+        self.assertEqual(publications[1]["num_citations"], 0)
+        self.assertEqual(publications[1]["bib"]["title"], "Paper & Two")
+
+    def test_scholar_public_profile_parser_rejects_block_page(self) -> None:
+        with self.assertRaises(data_utils.DataValidationError):
+            update_scholar_citations.parse_public_profile(
+                "<html><body>Please verify you are not a robot.</body></html>"
+            )
+
+    def test_scholar_fetches_again_when_already_checked_today(self) -> None:
+        output = self.root / "citations.yml"
+        socials = self.root / "socials.yml"
+        bibliography = self.root / "papers.bib"
+        socials.write_text("scholar_userid: user-id\n", encoding="utf-8")
+        bibliography.write_text(
+            "@article{x, google_scholar_id={paper-id}}\n", encoding="utf-8"
+        )
+        existing = {
+            "metadata": {
+                "last_changed": data_utils.today_iso(),
+                "last_checked": data_utils.today_iso(),
+                "last_updated": data_utils.today_iso(),
+                "paper_count": 1,
+            },
+            "papers": {
+                "user-id:paper-id": {
+                    "citations": 1,
+                    "title": "Paper",
+                    "year": "2026",
+                }
+            },
+        }
+        data_utils.atomic_dump_yaml(output, existing)
+        author_data = {
+            "publications": [
+                {
+                    "pub_id": "user-id:paper-id",
+                    "bib": {"title": "Paper", "pub_year": "2026"},
+                    "num_citations": 2,
+                }
+            ]
+        }
+        client = mock.Mock()
+        client.search_author_id.return_value = {}
+        client.fill.return_value = author_data
+        with (
+            mock.patch.object(update_scholar_citations, "OUTPUT_FILE", output),
+            mock.patch.object(update_scholar_citations, "SOCIALS_FILE", socials),
+            mock.patch.object(
+                update_scholar_citations, "BIBLIOGRAPHY_FILE", bibliography
+            ),
+        ):
+            self.assertTrue(update_scholar_citations.get_scholar_citations(client))
+
+        result = yaml.safe_load(output.read_text(encoding="utf-8"))
+        self.assertEqual(result["papers"]["user-id:paper-id"]["citations"], 2)
+        client.fill.assert_called_once()
+
     def test_scholar_rejects_partial_response_without_overwriting(self) -> None:
         output = self.root / "citations.yml"
         socials = self.root / "socials.yml"

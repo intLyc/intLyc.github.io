@@ -6,6 +6,9 @@ from __future__ import annotations
 import os
 import re
 import sys
+import urllib.parse
+import urllib.request
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +18,143 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 SOCIALS_FILE = REPO_ROOT / "_data" / "socials.yml"
 BIBLIOGRAPHY_FILE = REPO_ROOT / "_bibliography" / "papers.bib"
 OUTPUT_FILE = REPO_ROOT / "_data" / "citations.yml"
+
+
+class ScholarProfileParser(HTMLParser):
+    """Extract publication metadata from a public Scholar profile page."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.publications: list[dict[str, object]] = []
+        self._publication: dict[str, object] | None = None
+        self._field: str | None = None
+        self._field_parts: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attributes = dict(attrs)
+        classes = set((attributes.get("class") or "").split())
+        if tag == "tr" and "gsc_a_tr" in classes:
+            self._publication = {}
+            return
+        if self._publication is None:
+            return
+        if tag == "a" and "gsc_a_at" in classes:
+            query = urllib.parse.parse_qs(
+                urllib.parse.urlparse(attributes.get("href") or "").query
+            )
+            publication_ids = query.get("citation_for_view") or []
+            if publication_ids:
+                self._publication["pub_id"] = publication_ids[0]
+            self._start_field("title")
+        elif tag == "a" and "gsc_a_ac" in classes:
+            self._start_field("citations")
+        elif tag == "td" and "gsc_a_y" in classes:
+            self._start_field("year")
+
+    def handle_data(self, data: str) -> None:
+        if self._field is not None:
+            self._field_parts.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if self._publication is None:
+            return
+        if self._field == "title" and tag == "a":
+            self._finish_field()
+        elif self._field == "citations" and tag == "a":
+            self._finish_field()
+        elif self._field == "year" and tag == "td":
+            self._finish_field()
+        elif tag == "tr":
+            title = str(self._publication.get("title") or "").strip()
+            citation_text = str(self._publication.get("citations") or "").strip()
+            self._publication["bib"] = {
+                "title": title,
+                "pub_year": str(self._publication.pop("year", "")).strip(),
+            }
+            self._publication["num_citations"] = int(citation_text or "0")
+            self._publication.pop("title", None)
+            self._publication.pop("citations", None)
+            self.publications.append(self._publication)
+            self._publication = None
+            self._field = None
+
+    def _start_field(self, field: str) -> None:
+        self._field = field
+        self._field_parts = []
+
+    def _finish_field(self) -> None:
+        if self._publication is not None and self._field is not None:
+            self._publication[self._field] = "".join(self._field_parts).strip()
+        self._field = None
+        self._field_parts = []
+
+
+def parse_public_profile(html: str) -> list[dict[str, object]]:
+    """Parse one Scholar profile page and reject block/error responses."""
+
+    parser = ScholarProfileParser()
+    parser.feed(html)
+    if not parser.publications:
+        raise DataValidationError("public Google Scholar profile returned no publications")
+    return parser.publications
+
+
+def fetch_public_profile(scholar_user_id: str) -> dict[str, object]:
+    """Fetch all publications directly from the public Scholar profile."""
+
+    publications: list[dict[str, object]] = []
+    page_size = 100
+    for start in range(0, 1000, page_size):
+        query = urllib.parse.urlencode(
+            {
+                "user": scholar_user_id,
+                "hl": "en",
+                "cstart": start,
+                "pagesize": page_size,
+            }
+        )
+        request = urllib.request.Request(
+            f"https://scholar.google.com/citations?{query}",
+            headers={
+                "Accept-Language": "en-US,en;q=0.9",
+                "User-Agent": (
+                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                    "AppleWebKit/537.36 (KHTML, like Gecko) "
+                    "Chrome/127.0.0.0 Safari/537.36"
+                ),
+            },
+        )
+        with urllib.request.urlopen(request, timeout=20) as response:
+            page = parse_public_profile(response.read().decode("utf-8", errors="replace"))
+        publications.extend(page)
+        if len(page) < page_size:
+            break
+    return {"publications": publications}
+
+
+def fetch_author_data(scholar_user_id: str, client: Any | None = None) -> dict[str, Any]:
+    """Use the public profile first, with scholarly as a compatibility fallback."""
+
+    if client is not None:
+        client.set_timeout(15)
+        client.set_retries(3)
+        return client.fill(client.search_author_id(scholar_user_id))
+
+    try:
+        return fetch_public_profile(scholar_user_id)
+    except Exception as direct_error:  # noqa: BLE001 - fallback boundary
+        print(f"Direct Scholar profile fetch failed: {direct_error}; trying scholarly.")
+
+    try:
+        from scholarly import scholarly
+
+        scholarly.set_timeout(15)
+        scholarly.set_retries(3)
+        return scholarly.fill(scholarly.search_author_id(scholar_user_id))
+    except Exception as scholarly_error:  # noqa: BLE001 - fallback boundary
+        raise DataValidationError(
+            f"both Google Scholar fetch methods failed; scholarly: {scholarly_error}"
+        ) from scholarly_error
 
 
 def load_scholar_user_id() -> str:
@@ -44,7 +184,7 @@ def _publication_suffix(publication_id: str) -> str:
 
 
 def build_citation_data(author_data: dict[str, Any]) -> dict[str, dict[str, object]]:
-    """Validate and normalize every publication returned by scholarly."""
+    """Validate and normalize every publication returned by Scholar."""
 
     publications = author_data.get("publications")
     if not isinstance(publications, list) or not publications:
@@ -129,22 +269,9 @@ def get_scholar_citations(client: Any | None = None) -> bool:
     scholar_user_id = load_scholar_user_id()
     today = today_iso()
     existing_data = load_yaml_mapping(OUTPUT_FILE)
-    existing_metadata = (existing_data or {}).get("metadata")
-    if isinstance(existing_metadata, dict) and (
-        existing_metadata.get("last_checked") == today
-        or existing_metadata.get("last_updated") == today
-    ):
-        print(f"Citations were already checked on {today}; skipping fetch.")
-        return False
 
     print(f"Fetching citations for Google Scholar ID: {scholar_user_id}")
-    if client is None:
-        from scholarly import scholarly as client  # Imported only for a real fetch.
-
-    client.set_timeout(15)
-    client.set_retries(3)
-    author = client.search_author_id(scholar_user_id)
-    author_data = client.fill(author)
+    author_data = fetch_author_data(scholar_user_id, client)
     if not isinstance(author_data, dict):
         raise DataValidationError(f"Google Scholar returned invalid author data for {scholar_user_id}")
 

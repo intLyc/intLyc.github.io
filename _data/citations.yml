@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-08-09'
+  last_changed: '2026-08-13'
   last_checked: '2026-08-13'
   last_updated: '2026-08-13'
   paper_count: 22
@@ -17,7 +17,7 @@ papers:
     title: Topology-Guided Knowledge Transfer for Multiobjective Multitask Optimization
     year: '2026'
   h7hvzUEAAAAJ:9yKSN-GCB0IC:
-    citations: 74
+    citations: 75
     title: Deep reinforcement learning assisted co-evolutionary differential evolution for constrained optimization
     year: '2023'
   h7hvzUEAAAAJ:IjCSPb-OGe4C:
@@ -37,7 +37,7 @@ papers:
     title: A competitive and cooperative evolutionary framework for ensemble of constraint handling techniques
     year: '2024'
   h7hvzUEAAAAJ:UeHWp8X0CEIC:
-    citations: 40
+    citations: 41
     title: 'MToP: A MATLAB benchmarking platform for evolutionary multitasking'
     year: '2023'
   h7hvzUEAAAAJ:UebtZRa9Y70C:
@@ -45,7 +45,7 @@ papers:
     title: Multiobjective multitask optimization with manifold structure-driven knowledge transfer
     year: '2026'
   h7hvzUEAAAAJ:W7OEmFMy1HYC:
-    citations: 25
+    citations: 26
     title: Constrained multitasking optimization via co-evolution and domain adaptation
     year: '2024'
   h7hvzUEAAAAJ:WF5omc3nYNoC:
@@ -53,7 +53,7 @@ papers:
     title: A diversity-enhanced tri-stage framework for constrained multi-objective optimization
     year: '2024'
   h7hvzUEAAAAJ:Y0pCki6q_DkC:
-    citations: 14
+    citations: 15
     title: Transfer search directions among decomposed subtasks for evolutionary multitasking in multiobjective optimization
     year: '2024'
   h7hvzUEAAAAJ:YsMSGLbcyi4C:
@@ -61,7 +61,7 @@ papers:
     title: Multitask differential evolution with adaptive dual knowledge transfer
     year: '2024'
   h7hvzUEAAAAJ:_FxGoFyzp5QC:
-    citations: 20
+    citations: 21
     title: Multiobjective multitask optimization via diversity-and convergence-oriented knowledge transfer
     year: '2025'
   h7hvzUEAAAAJ:d1gkVwhDpl0C:
@@ -69,7 +69,7 @@ papers:
     title: 'Evolutionary constrained multi-task optimization: Benchmark problems and preliminary results'
     year: '2022'
   h7hvzUEAAAAJ:eQOLeE2rZwMC:
-    citations: 10
+    citations: 11
     title: Transfer task-averaged natural gradient for efficient many-task optimization
     year: '2024'
   h7hvzUEAAAAJ:hqOjcs7Dif8C:
@@ -77,7 +77,7 @@ papers:
     title: Ensemble of Transfer Techniques via Adaptive Resource Allocation for Multiobjective Multitask Optimization
     year: '2026'
   h7hvzUEAAAAJ:qjMakFHDy7sC:
-    citations: 95
+    citations: 97
     title: Multitasking optimization via an adaptive solver multitasking evolutionary framework
     year: '2023'
   h7hvzUEAAAAJ:roLk4NBRz8UC:

@@ -48,9 +48,6 @@ if ! "$PYTHON" bin/update_scholar_citations.py; then
   exit 1
 fi
 
-LAST_DEPLOY_FILE="$HOME/.intlyc-last-deploy"
-TODAY="$(date '+%Y-%m-%d')"
-PUSHED=0
 if git diff --quiet -- _data/citations.yml; then
   echo "no citation changes"
 else
@@ -60,29 +57,4 @@ else
       commit -m "chore: auto-refresh Google Scholar citations"
   git push --quiet
   echo "pushed citation update (triggers deploy)"
-  echo "$TODAY" > "$LAST_DEPLOY_FILE"
-  PUSHED=1
-fi
-
-# --- Daily scheduled deploy ------------------------------------------------
-# Guaranteed once-a-day rebuild (refreshes stars/visitors on CI and picks up
-# any committed changes), independent of GitHub's unreliable `schedule` cron.
-# Skipped if we already pushed above, because the push itself triggers deploy.
-if [ "$PUSHED" -eq 0 ]; then
-  if [ "$(cat "$LAST_DEPLOY_FILE" 2>/dev/null || echo none)" != "$TODAY" ]; then
-    if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
-      if gh workflow run deploy.yml --repo intLyc/intLyc.github.io --ref main; then
-        echo "$TODAY" > "$LAST_DEPLOY_FILE"
-        echo "daily deploy dispatched"
-      else
-        echo "daily deploy dispatch failed"
-        exit 1
-      fi
-    else
-      echo "gh unavailable; skipping daily deploy dispatch"
-      exit 1
-    fi
-  else
-    echo "daily deploy already dispatched today"
-  fi
 fi

@@ -24,8 +24,8 @@ on:
       - "test/**"
       - "!README.md"
   schedule:
-    # Best-effort daily rebuild (04:00 UTC = 12:00 Singapore/Beijing). The local
-    # launchd job (com.intlyc.refresh) provides an independent daily trigger.
+    # Best-effort daily rebuild (04:00 UTC = 12:00 Singapore/Beijing). Citation
+    # changes pushed by the local launchd job also trigger this workflow.
     - cron: "0 4 * * *"
   pull_request:
     branches:
