@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-08-13'
+  last_changed: '2026-08-14'
   last_checked: '2026-08-14'
   last_updated: '2026-08-14'
   paper_count: 22
@@ -25,7 +25,7 @@ papers:
     title: Multitask evolution strategy with knowledge-guided external sampling
     year: '2023'
   h7hvzUEAAAAJ:LkGwnXOMwfcC:
-    citations: 3
+    citations: 4
     title: Distribution Direction-Assisted Two-Stage Knowledge Transfer for Many-Task Optimization
     year: '2025'
   h7hvzUEAAAAJ:Se3iqnhoufwC:
@@ -37,9 +37,9 @@ papers:
     title: A competitive and cooperative evolutionary framework for ensemble of constraint handling techniques
     year: '2024'
   h7hvzUEAAAAJ:UeHWp8X0CEIC:
-    citations: 41
+    citations: 42
     title: 'MToP: A MATLAB benchmarking platform for evolutionary multitasking'
-    year: '2023'
+    year: '2026'
   h7hvzUEAAAAJ:UebtZRa9Y70C:
     citations: 3
     title: Multiobjective multitask optimization with manifold structure-driven knowledge transfer
@@ -69,7 +69,7 @@ papers:
     title: 'Evolutionary constrained multi-task optimization: Benchmark problems and preliminary results'
     year: '2022'
   h7hvzUEAAAAJ:eQOLeE2rZwMC:
-    citations: 11
+    citations: 12
     title: Transfer task-averaged natural gradient for efficient many-task optimization
     year: '2024'
   h7hvzUEAAAAJ:hqOjcs7Dif8C:
@@ -77,7 +77,7 @@ papers:
     title: Ensemble of Transfer Techniques via Adaptive Resource Allocation for Multiobjective Multitask Optimization
     year: '2026'
   h7hvzUEAAAAJ:qjMakFHDy7sC:
-    citations: 97
+    citations: 98
     title: Multitasking optimization via an adaptive solver multitasking evolutionary framework
     year: '2023'
   h7hvzUEAAAAJ:roLk4NBRz8UC:
