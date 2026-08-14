@@ -23,7 +23,7 @@
   {% if site.data.visitors.countries.size > 0 %}
     <div class="visitors-stats">
       <span class="visitors-period">
-        Cumulative visitors since {{ site.data.visitors.metadata.period_start | date: '%b %-d, %Y' }}:
+        Cumulative visitors by location since {{ site.data.visitors.metadata.period_start | date: '%b %-d, %Y' }}:
       </span>
       {% for c in site.data.visitors.countries limit: 5 %}
         <span class="visitors-stat"><strong>{{ c.display_country }}</strong> {{ c.visitors }}</span>
