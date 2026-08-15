@@ -1,10 +1,10 @@
 countries:
 - country: SG
   display_country: Singapore
-  visitors: 54
+  visitors: 57
 - country: US
   display_country: United States
-  visitors: 15
+  visitors: 17
 - country: TW
   display_country: Taiwan
   visitors: 3
@@ -20,4 +20,4 @@ countries:
 metadata:
   last_updated: '2026-08-15'
   period_start: '2026-08-08T00:00:00Z'
-  total_visitors: 76
+  total_visitors: 81
