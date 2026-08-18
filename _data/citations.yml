@@ -1,8 +1,8 @@
 metadata:
-  last_changed: '2026-08-15'
+  last_changed: '2026-08-18'
   last_checked: '2026-08-18'
   last_updated: '2026-08-18'
-  paper_count: 22
+  paper_count: 23
 papers:
   h7hvzUEAAAAJ:0EnyYjriUFMC:
     citations: 0
@@ -15,6 +15,10 @@ papers:
   h7hvzUEAAAAJ:5nxA0vEk-isC:
     citations: 0
     title: Topology-Guided Knowledge Transfer for Multiobjective Multitask Optimization
+    year: '2026'
+  h7hvzUEAAAAJ:8k81kl-MbHgC:
+    citations: 0
+    title: 'From Consistency to Collaborative Discovery: MFEA-CoD for Multitask Novelty Search'
     year: '2026'
   h7hvzUEAAAAJ:9yKSN-GCB0IC:
     citations: 75
