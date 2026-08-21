@@ -57,6 +57,17 @@ class DataUpdateTests(unittest.TestCase):
         self.assertIn("start=2026-08-08T00%3A00%3A00Z", get_json.call_args_list[0].args[0])
         self.assertIn("offset=1", get_json.call_args_list[1].args[0])
 
+    def test_visitors_labels_cn_as_mainland_china(self) -> None:
+        response = {
+            "stats": [{"id": "CN", "name": "China", "count": 1}],
+            "more": False,
+        }
+        with mock.patch.object(update_visitors, "_get_json", return_value=response):
+            countries = update_visitors.fetch_countries("token", update_visitors.DEFAULT_START)
+
+        self.assertEqual(countries[0]["country"], "CN")
+        self.assertEqual(countries[0]["display_country"], "Mainland China")
+
     def test_visitors_reject_decrease_without_overwriting_last_good_data(self) -> None:
         output = self.root / "visitors.yml"
         original = {
