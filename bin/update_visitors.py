@@ -27,6 +27,7 @@ RETRYABLE_HTTP_CODES = {404, 408, 425, 429}
 DEFAULT_START = "2026-08-08T00:00:00Z"
 REPO_ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_FILE = REPO_ROOT / "_data" / "visitors.yml"
+DISPLAY_COUNTRY_OVERRIDES = {"CN": "Mainland China"}
 
 
 def _get_json(url: str, token: str) -> object:
@@ -96,7 +97,9 @@ def fetch_countries(token: str, start: str) -> list[dict[str, object]]:
             countries_by_code[raw_code] = {
                 "country": raw_code,
                 "visitors": count,
-                "display_country": str(row.get("name") or raw_code),
+                "display_country": DISPLAY_COUNTRY_OVERRIDES.get(
+                    raw_code, str(row.get("name") or raw_code)
+                ),
             }
 
         more = data.get("more", False)
