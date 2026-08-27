@@ -1,13 +1,9 @@
 metadata:
-  last_changed: '2026-08-19'
-  last_checked: '2026-08-20'
-  last_updated: '2026-08-20'
+  last_changed: '2026-08-27'
+  last_checked: '2026-08-27'
+  last_updated: '2026-08-27'
   paper_count: 23
 papers:
-  h7hvzUEAAAAJ:0EnyYjriUFMC:
-    citations: 0
-    title: 'Breaking Multi-Task Curse: Reward-Weighted Evolution for Black-Box Many-Task Optimization'
-    year: '2026'
   h7hvzUEAAAAJ:2osOgNQ5qMEC:
     citations: 30
     title: Evolutionary competitive multitasking optimization via improved adaptive differential evolution
@@ -32,6 +28,10 @@ papers:
     citations: 4
     title: Distribution Direction-Assisted Two-Stage Knowledge Transfer for Many-Task Optimization
     year: '2025'
+  h7hvzUEAAAAJ:MXK_kJrjxJIC:
+    citations: 0
+    title: 'Breaking Multi-Task Curse: Reward-Weighted Evolution for Black-Box Many-Task Optimization'
+    year: '2026'
   h7hvzUEAAAAJ:Se3iqnhoufwC:
     citations: 3
     title: Information entropy based evolutionary multitasking optimization
@@ -53,7 +53,7 @@ papers:
     title: Constrained multitasking optimization via co-evolution and domain adaptation
     year: '2024'
   h7hvzUEAAAAJ:WF5omc3nYNoC:
-    citations: 34
+    citations: 35
     title: A diversity-enhanced tri-stage framework for constrained multi-objective optimization
     year: '2024'
   h7hvzUEAAAAJ:Y0pCki6q_DkC:

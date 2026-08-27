@@ -18,6 +18,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO="${REPO:-$(dirname "$SCRIPT_DIR")}"
 LOG="$HOME/Library/Logs/intlyc-refresh.log"
 
+mkdir -p "$(dirname "$LOG")"
+touch "$LOG"
 exec >>"$LOG" 2>&1
 echo "=== refresh $(date '+%Y-%m-%d %H:%M:%S %z') in $REPO ==="
 
@@ -30,7 +32,7 @@ if ! git pull --rebase --autostash --quiet; then
   exit 1
 fi
 
-# Locate a python3 that has `scholarly` installed (conda base on this Mac).
+# Locate a Python installation with PyYAML (conda base on this Mac).
 PYTHON="${REFRESH_PYTHON:-}"
 if [ -z "$PYTHON" ]; then
   for c in \

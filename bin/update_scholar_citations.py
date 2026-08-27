@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import os
 import re
+import signal
 import sys
+import time
 import urllib.parse
 import urllib.request
 from html.parser import HTMLParser
@@ -18,6 +20,16 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 SOCIALS_FILE = REPO_ROOT / "_data" / "socials.yml"
 BIBLIOGRAPHY_FILE = REPO_ROOT / "_bibliography" / "papers.bib"
 OUTPUT_FILE = REPO_ROOT / "_data" / "citations.yml"
+PUBLIC_FETCH_ATTEMPTS = 3
+DEFAULT_FETCH_TIMEOUT_SECONDS = 90
+
+
+class ScholarFetchTimeout(TimeoutError):
+    """Raised when a complete Scholar refresh exceeds its hard deadline."""
+
+
+def _raise_fetch_timeout(_signum: int, _frame: Any) -> None:
+    raise ScholarFetchTimeout("Google Scholar refresh exceeded its hard timeout")
 
 
 class ScholarProfileParser(HTMLParser):
@@ -133,28 +145,31 @@ def fetch_public_profile(scholar_user_id: str) -> dict[str, object]:
 
 
 def fetch_author_data(scholar_user_id: str, client: Any | None = None) -> dict[str, Any]:
-    """Use the public profile first, with scholarly as a compatibility fallback."""
+    """Fetch the public profile with bounded retries and no unbounded fallback."""
 
     if client is not None:
         client.set_timeout(15)
         client.set_retries(3)
         return client.fill(client.search_author_id(scholar_user_id))
 
-    try:
-        return fetch_public_profile(scholar_user_id)
-    except Exception as direct_error:  # noqa: BLE001 - fallback boundary
-        print(f"Direct Scholar profile fetch failed: {direct_error}; trying scholarly.")
+    last_error: Exception | None = None
+    for attempt in range(1, PUBLIC_FETCH_ATTEMPTS + 1):
+        try:
+            return fetch_public_profile(scholar_user_id)
+        except Exception as error:  # noqa: BLE001 - bounded retry boundary
+            last_error = error
+            if attempt == PUBLIC_FETCH_ATTEMPTS:
+                break
+            delay = 2**attempt
+            print(
+                f"Direct Scholar profile fetch failed: {error}; "
+                f"retrying in {delay}s ({attempt}/{PUBLIC_FETCH_ATTEMPTS})."
+            )
+            time.sleep(delay)
 
-    try:
-        from scholarly import scholarly
-
-        scholarly.set_timeout(15)
-        scholarly.set_retries(3)
-        return scholarly.fill(scholarly.search_author_id(scholar_user_id))
-    except Exception as scholarly_error:  # noqa: BLE001 - fallback boundary
-        raise DataValidationError(
-            f"both Google Scholar fetch methods failed; scholarly: {scholarly_error}"
-        ) from scholarly_error
+    raise DataValidationError(
+        f"public Google Scholar profile failed after {PUBLIC_FETCH_ATTEMPTS} attempts: {last_error}"
+    ) from last_error
 
 
 def load_scholar_user_id() -> str:
@@ -299,9 +314,40 @@ def get_scholar_citations(client: Any | None = None) -> bool:
     return True
 
 
+def get_fetch_timeout_seconds() -> int:
+    """Load and validate the process-wide Scholar refresh deadline."""
+
+    raw_timeout = os.environ.get(
+        "SCHOLAR_FETCH_TIMEOUT_SECONDS", str(DEFAULT_FETCH_TIMEOUT_SECONDS)
+    )
+    try:
+        timeout_seconds = int(raw_timeout)
+    except ValueError as error:
+        raise DataValidationError("SCHOLAR_FETCH_TIMEOUT_SECONDS must be an integer") from error
+    if timeout_seconds <= 0:
+        raise DataValidationError("SCHOLAR_FETCH_TIMEOUT_SECONDS must be greater than zero")
+    return timeout_seconds
+
+
+def get_scholar_citations_with_timeout(timeout_seconds: int | None = None) -> bool:
+    """Run a complete refresh under a process-wide hard deadline."""
+
+    if timeout_seconds is None:
+        timeout_seconds = get_fetch_timeout_seconds()
+    if timeout_seconds <= 0:
+        raise DataValidationError("Scholar refresh timeout must be greater than zero")
+    previous_handler = signal.signal(signal.SIGALRM, _raise_fetch_timeout)
+    signal.setitimer(signal.ITIMER_REAL, timeout_seconds)
+    try:
+        return get_scholar_citations()
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, previous_handler)
+
+
 def main() -> int:
     try:
-        get_scholar_citations()
+        get_scholar_citations_with_timeout()
         return 0
     except Exception as error:  # noqa: BLE001 - command-line boundary
         print(f"Error: {error}", file=sys.stderr)
