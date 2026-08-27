@@ -252,6 +252,74 @@ class DataUpdateTests(unittest.TestCase):
                 "<html><body>Please verify you are not a robot.</body></html>"
             )
 
+    def test_scholar_public_profile_retries_are_bounded(self) -> None:
+        author_data = {"publications": []}
+        with (
+            mock.patch.object(
+                update_scholar_citations,
+                "fetch_public_profile",
+                side_effect=[OSError("first"), OSError("second"), author_data],
+            ) as fetch_public_profile,
+            mock.patch.object(update_scholar_citations.time, "sleep") as sleep,
+        ):
+            result = update_scholar_citations.fetch_author_data("user-id")
+
+        self.assertIs(result, author_data)
+        self.assertEqual(fetch_public_profile.call_count, 3)
+        self.assertEqual([call.args[0] for call in sleep.call_args_list], [2, 4])
+
+    def test_scholar_public_profile_stops_after_retry_limit(self) -> None:
+        with (
+            mock.patch.object(
+                update_scholar_citations,
+                "fetch_public_profile",
+                side_effect=OSError("blocked"),
+            ) as fetch_public_profile,
+            mock.patch.object(update_scholar_citations.time, "sleep"),
+            self.assertRaises(data_utils.DataValidationError),
+        ):
+            update_scholar_citations.fetch_author_data("user-id")
+
+        self.assertEqual(
+            fetch_public_profile.call_count,
+            update_scholar_citations.PUBLIC_FETCH_ATTEMPTS,
+        )
+
+    def test_scholar_refresh_uses_and_cancels_hard_timeout(self) -> None:
+        previous_handler = object()
+        with (
+            mock.patch.object(
+                update_scholar_citations, "get_scholar_citations", return_value=True
+            ),
+            mock.patch.object(
+                update_scholar_citations.signal,
+                "signal",
+                return_value=previous_handler,
+            ) as set_handler,
+            mock.patch.object(
+                update_scholar_citations.signal, "setitimer"
+            ) as set_timer,
+        ):
+            self.assertTrue(
+                update_scholar_citations.get_scholar_citations_with_timeout(42)
+            )
+
+        set_timer.assert_has_calls(
+            [
+                mock.call(update_scholar_citations.signal.ITIMER_REAL, 42),
+                mock.call(update_scholar_citations.signal.ITIMER_REAL, 0),
+            ]
+        )
+        set_handler.assert_has_calls(
+            [
+                mock.call(
+                    update_scholar_citations.signal.SIGALRM,
+                    update_scholar_citations._raise_fetch_timeout,
+                ),
+                mock.call(update_scholar_citations.signal.SIGALRM, previous_handler),
+            ]
+        )
+
     def test_scholar_fetches_again_when_already_checked_today(self) -> None:
         output = self.root / "citations.yml"
         socials = self.root / "socials.yml"
