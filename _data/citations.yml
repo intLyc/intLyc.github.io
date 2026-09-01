@@ -1,7 +1,7 @@
 metadata:
-  last_changed: '2026-08-29'
-  last_checked: '2026-08-30'
-  last_updated: '2026-08-30'
+  last_changed: '2026-09-01'
+  last_checked: '2026-09-01'
+  last_updated: '2026-09-01'
   paper_count: 23
 papers:
   h7hvzUEAAAAJ:2osOgNQ5qMEC:
@@ -37,7 +37,7 @@ papers:
     title: Information entropy based evolutionary multitasking optimization
     year: '2026'
   h7hvzUEAAAAJ:Tyk-4Ss8FVUC:
-    citations: 27
+    citations: 26
     title: A competitive and cooperative evolutionary framework for ensemble of constraint handling techniques
     year: '2024'
   h7hvzUEAAAAJ:UeHWp8X0CEIC:
@@ -65,7 +65,7 @@ papers:
     title: Multitask differential evolution with adaptive dual knowledge transfer
     year: '2024'
   h7hvzUEAAAAJ:_FxGoFyzp5QC:
-    citations: 23
+    citations: 24
     title: Multiobjective multitask optimization via diversity-and convergence-oriented knowledge transfer
     year: '2025'
   h7hvzUEAAAAJ:d1gkVwhDpl0C:
@@ -93,6 +93,6 @@ papers:
     title: 'Evolutionary competitive multiobjective multitasking: One-pass optimization of heterogeneous pareto solutions'
     year: '2025'
   h7hvzUEAAAAJ:zYLM7Y9cAGgC:
-    citations: 65
+    citations: 66
     title: Multiobjective multitask optimization with multiple knowledge types and transfer adaptation
     year: '2024'

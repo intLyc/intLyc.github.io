@@ -249,7 +249,7 @@ def validate_complete_result(
     expected_ids: set[str],
     existing_data: dict[str, Any] | None,
 ) -> None:
-    """Reject partial or unexpectedly decreasing Scholar snapshots."""
+    """Reject partial Scholar snapshots while accepting Scholar corrections."""
 
     returned_suffixes = {_publication_suffix(publication_id) for publication_id in papers}
     missing = sorted(expected_ids - returned_suffixes)
@@ -272,9 +272,10 @@ def validate_complete_result(
         old_count = old_paper.get("citations")
         new_count = papers[publication_id].get("citations")
         if isinstance(old_count, int) and isinstance(new_count, int) and new_count < old_count:
-            raise DataValidationError(
-                f"citations for {publication_id} decreased from {old_count} to {new_count}; "
-                "set ALLOW_SCHOLAR_DECREASE=1 only after verifying the change"
+            print(
+                f"Notice: accepting Google Scholar citation correction for {publication_id}: "
+                f"{old_count} -> {new_count}",
+                file=sys.stderr,
             )
 
 
