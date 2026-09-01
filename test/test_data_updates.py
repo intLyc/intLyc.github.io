@@ -369,6 +369,49 @@ class DataUpdateTests(unittest.TestCase):
         self.assertEqual(result["papers"]["user-id:paper-id"]["citations"], 2)
         client.fill.assert_called_once()
 
+    def test_scholar_accepts_citation_correction_in_complete_response(self) -> None:
+        output = self.root / "citations.yml"
+        socials = self.root / "socials.yml"
+        bibliography = self.root / "papers.bib"
+        socials.write_text("scholar_userid: user-id\n", encoding="utf-8")
+        bibliography.write_text(
+            "@article{x, google_scholar_id={paper-id}}\n", encoding="utf-8"
+        )
+        existing = {
+            "metadata": {"last_updated": "2026-08-01", "paper_count": 1},
+            "papers": {
+                "user-id:paper-id": {
+                    "citations": 27,
+                    "title": "Paper",
+                    "year": "2026",
+                }
+            },
+        }
+        data_utils.atomic_dump_yaml(output, existing)
+        corrected = {
+            "publications": [
+                {
+                    "pub_id": "user-id:paper-id",
+                    "bib": {"title": "Paper", "pub_year": "2026"},
+                    "num_citations": 26,
+                }
+            ]
+        }
+        client = mock.Mock()
+        client.search_author_id.return_value = {}
+        client.fill.return_value = corrected
+        with (
+            mock.patch.object(update_scholar_citations, "OUTPUT_FILE", output),
+            mock.patch.object(update_scholar_citations, "SOCIALS_FILE", socials),
+            mock.patch.object(
+                update_scholar_citations, "BIBLIOGRAPHY_FILE", bibliography
+            ),
+        ):
+            self.assertTrue(update_scholar_citations.get_scholar_citations(client))
+
+        result = yaml.safe_load(output.read_text(encoding="utf-8"))
+        self.assertEqual(result["papers"]["user-id:paper-id"]["citations"], 26)
+
     def test_scholar_rejects_partial_response_without_overwriting(self) -> None:
         output = self.root / "citations.yml"
         socials = self.root / "socials.yml"
