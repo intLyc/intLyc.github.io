@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-09-02'
+  last_changed: '2026-09-04'
   last_checked: '2026-09-04'
   last_updated: '2026-09-04'
   paper_count: 23
@@ -53,7 +53,7 @@ papers:
     title: Constrained multitasking optimization via co-evolution and domain adaptation
     year: '2024'
   h7hvzUEAAAAJ:WF5omc3nYNoC:
-    citations: 38
+    citations: 39
     title: A diversity-enhanced tri-stage framework for constrained multi-objective optimization
     year: '2024'
   h7hvzUEAAAAJ:Y0pCki6q_DkC:
