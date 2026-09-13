@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-09-10'
+  last_changed: '2026-09-13'
   last_checked: '2026-09-13'
   last_updated: '2026-09-13'
   paper_count: 23
@@ -93,6 +93,6 @@ papers:
     title: 'Evolutionary competitive multiobjective multitasking: One-pass optimization of heterogeneous pareto solutions'
     year: '2025'
   h7hvzUEAAAAJ:zYLM7Y9cAGgC:
-    citations: 66
+    citations: 67
     title: Multiobjective multitask optimization with multiple knowledge types and transfer adaptation
     year: '2024'
