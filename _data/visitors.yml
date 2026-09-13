@@ -4,7 +4,7 @@ countries:
   visitors: 121
 - country: US
   display_country: United States
-  visitors: 45
+  visitors: 46
 - country: JP
   display_country: Japan
   visitors: 11
@@ -23,4 +23,4 @@ countries:
 metadata:
   last_updated: '2026-09-13'
   period_start: '2026-08-08T00:00:00Z'
-  total_visitors: 183
+  total_visitors: 184
