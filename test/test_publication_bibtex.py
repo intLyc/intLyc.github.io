@@ -57,7 +57,7 @@ class PublicationBibtexTests(unittest.TestCase):
         self.assertLess(code_end, copy_button)
         self.assertLess(copy_button, citation_badge)
 
-    def test_mtop_final_publication_metadata(self) -> None:
+    def test_mtop_bibtex_has_final_publication_metadata(self) -> None:
         citation = self.publication_bibtex["li2026mtop"]
         for field, value in (
             ("volume", "6"),
@@ -71,7 +71,6 @@ class PublicationBibtexTests(unittest.TestCase):
                     citation,
                     rf"(?m)^\s+{field}\s*=\s*\{{{re.escape(value)}\}},?$",
                 )
-
 
 if __name__ == "__main__":
     unittest.main()
