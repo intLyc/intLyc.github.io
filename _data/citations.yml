@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-09-18'
+  last_changed: '2026-09-19'
   last_checked: '2026-09-19'
   last_updated: '2026-09-19'
   paper_count: 23
@@ -25,7 +25,7 @@ papers:
     title: Multitask evolution strategy with knowledge-guided external sampling
     year: '2023'
   h7hvzUEAAAAJ:LkGwnXOMwfcC:
-    citations: 4
+    citations: 5
     title: Distribution Direction-Assisted Two-Stage Knowledge Transfer for Many-Task Optimization
     year: '2025'
   h7hvzUEAAAAJ:MXK_kJrjxJIC:
