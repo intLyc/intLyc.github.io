@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-09-19'
+  last_changed: '2026-09-20'
   last_checked: '2026-09-20'
   last_updated: '2026-09-20'
   paper_count: 23
@@ -57,7 +57,7 @@ papers:
     title: A diversity-enhanced tri-stage framework for constrained multi-objective optimization
     year: '2024'
   h7hvzUEAAAAJ:Y0pCki6q_DkC:
-    citations: 16
+    citations: 17
     title: Transfer search directions among decomposed subtasks for evolutionary multitasking in multiobjective optimization
     year: '2024'
   h7hvzUEAAAAJ:YsMSGLbcyi4C:
