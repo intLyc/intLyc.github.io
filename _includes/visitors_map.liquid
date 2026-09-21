@@ -25,7 +25,7 @@
       <span class="visitors-period">
         Cumulative visitors by location since {{ site.data.visitors.metadata.period_start | date: '%b %-d, %Y' }}:
       </span>
-      {% for c in site.data.visitors.countries limit: 5 %}
+      {% for c in site.data.visitors.countries limit: 10 %}
         <span class="visitors-stat"><strong>{{ c.display_country }}</strong> {{ c.visitors }}</span>
       {% endfor %}
     </div>
