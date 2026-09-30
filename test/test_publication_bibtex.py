@@ -36,7 +36,9 @@ class PublicationBibtexTests(unittest.TestCase):
         citation_keys = []
         for website_key, citation in self.publication_bibtex.items():
             with self.subTest(publication=website_key):
-                match = re.match(r"^@(article|inproceedings)\{([^,]+),", citation)
+                match = re.match(
+                    r"^@(article|inproceedings)\{([^,]+),", citation, flags=re.IGNORECASE
+                )
                 self.assertIsNotNone(match)
                 citation_keys.append(match.group(2))
                 for field in ("author", "title", "year"):
