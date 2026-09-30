@@ -1,7 +1,7 @@
 metadata:
-  last_changed: '2026-09-28'
-  last_checked: '2026-09-30'
-  last_updated: '2026-09-30'
+  last_changed: '2026-10-01'
+  last_checked: '2026-10-01'
+  last_updated: '2026-10-01'
   paper_count: 23
 papers:
   h7hvzUEAAAAJ:2osOgNQ5qMEC:
@@ -17,7 +17,7 @@ papers:
     title: 'From Consistency to Collaborative Discovery: MFEA-CoD for Multitask Novelty Search'
     year: '2026'
   h7hvzUEAAAAJ:9yKSN-GCB0IC:
-    citations: 77
+    citations: 78
     title: Deep reinforcement learning assisted co-evolutionary differential evolution for constrained optimization
     year: '2023'
   h7hvzUEAAAAJ:IjCSPb-OGe4C:
