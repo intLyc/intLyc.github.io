@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-10-04'
+  last_changed: '2026-10-10'
   last_checked: '2026-10-10'
   last_updated: '2026-10-10'
   paper_count: 23
@@ -41,7 +41,7 @@ papers:
     title: A competitive and cooperative evolutionary framework for ensemble of constraint handling techniques
     year: '2024'
   h7hvzUEAAAAJ:UeHWp8X0CEIC:
-    citations: 45
+    citations: 46
     title: 'MToP: A MATLAB benchmarking platform for evolutionary multitasking'
     year: '2026'
   h7hvzUEAAAAJ:UebtZRa9Y70C:
@@ -53,7 +53,7 @@ papers:
     title: Constrained multitasking optimization via co-evolution and domain adaptation
     year: '2024'
   h7hvzUEAAAAJ:WF5omc3nYNoC:
-    citations: 39
+    citations: 40
     title: A diversity-enhanced tri-stage framework for constrained multi-objective optimization
     year: '2024'
   h7hvzUEAAAAJ:Y0pCki6q_DkC:
