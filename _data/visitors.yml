@@ -1,10 +1,10 @@
 countries:
 - country: SG
   display_country: Singapore
-  visitors: 134
+  visitors: 135
 - country: US
   display_country: United States
-  visitors: 64
+  visitors: 66
 - country: JP
   display_country: Japan
   visitors: 11
@@ -27,6 +27,6 @@ countries:
   display_country: Saudi Arabia
   visitors: 1
 metadata:
-  last_updated: '2026-10-12'
+  last_updated: '2026-10-13'
   period_start: '2026-08-08T00:00:00Z'
-  total_visitors: 218
+  total_visitors: 221
