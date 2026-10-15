@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-10-14'
+  last_changed: '2026-10-15'
   last_checked: '2026-10-15'
   last_updated: '2026-10-15'
   paper_count: 23
@@ -33,7 +33,7 @@ papers:
     title: 'Breaking Multi-Task Curse: Reward-Weighted Evolution for Black-Box Many-Task Optimization'
     year: '2026'
   h7hvzUEAAAAJ:Se3iqnhoufwC:
-    citations: 3
+    citations: 4
     title: Information entropy based evolutionary multitasking optimization
     year: '2026'
   h7hvzUEAAAAJ:Tyk-4Ss8FVUC:
@@ -41,7 +41,7 @@ papers:
     title: A competitive and cooperative evolutionary framework for ensemble of constraint handling techniques
     year: '2024'
   h7hvzUEAAAAJ:UeHWp8X0CEIC:
-    citations: 46
+    citations: 47
     title: 'MToP: A MATLAB benchmarking platform for evolutionary multitasking'
     year: '2026'
   h7hvzUEAAAAJ:UebtZRa9Y70C:
