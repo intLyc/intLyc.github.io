@@ -4,13 +4,16 @@ countries:
   visitors: 140
 - country: US
   display_country: United States
-  visitors: 74
+  visitors: 75
 - country: JP
   display_country: Japan
   visitors: 11
 - country: TW
   display_country: Taiwan
-  visitors: 3
+  visitors: 4
+- country: CN
+  display_country: Mainland China
+  visitors: 2
 - country: FR
   display_country: France
   visitors: 2
@@ -20,13 +23,10 @@ countries:
 - country: CA
   display_country: Canada
   visitors: 1
-- country: CN
-  display_country: Mainland China
-  visitors: 1
 - country: SA
   display_country: Saudi Arabia
   visitors: 1
 metadata:
   last_updated: '2026-10-19'
   period_start: '2026-08-08T00:00:00Z'
-  total_visitors: 235
+  total_visitors: 238
