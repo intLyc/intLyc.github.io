@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-10-18'
+  last_changed: '2026-10-21'
   last_checked: '2026-10-21'
   last_updated: '2026-10-21'
   paper_count: 23
@@ -25,7 +25,7 @@ papers:
     title: Multitask evolution strategy with knowledge-guided external sampling
     year: '2023'
   h7hvzUEAAAAJ:LkGwnXOMwfcC:
-    citations: 5
+    citations: 6
     title: Distribution Direction-Assisted Two-Stage Knowledge Transfer for Many-Task Optimization
     year: '2025'
   h7hvzUEAAAAJ:MXK_kJrjxJIC:
@@ -37,7 +37,7 @@ papers:
     title: Information entropy based evolutionary multitasking optimization
     year: '2026'
   h7hvzUEAAAAJ:Tyk-4Ss8FVUC:
-    citations: 28
+    citations: 29
     title: A competitive and cooperative evolutionary framework for ensemble of constraint handling techniques
     year: '2024'
   h7hvzUEAAAAJ:UeHWp8X0CEIC:
@@ -53,7 +53,7 @@ papers:
     title: Constrained multitasking optimization via co-evolution and domain adaptation
     year: '2024'
   h7hvzUEAAAAJ:WF5omc3nYNoC:
-    citations: 41
+    citations: 42
     title: A diversity-enhanced tri-stage framework for constrained multi-objective optimization
     year: '2024'
   h7hvzUEAAAAJ:Y0pCki6q_DkC:
@@ -65,7 +65,7 @@ papers:
     title: Multitask differential evolution with adaptive dual knowledge transfer
     year: '2024'
   h7hvzUEAAAAJ:_FxGoFyzp5QC:
-    citations: 27
+    citations: 28
     title: Multiobjective multitask optimization via diversity-and convergence-oriented knowledge transfer
     year: '2025'
   h7hvzUEAAAAJ:d1gkVwhDpl0C:
