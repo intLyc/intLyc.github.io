@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-10-21'
+  last_changed: '2026-10-23'
   last_checked: '2026-10-23'
   last_updated: '2026-10-23'
   paper_count: 23
@@ -61,7 +61,7 @@ papers:
     title: Transfer search directions among decomposed subtasks for evolutionary multitasking in multiobjective optimization
     year: '2024'
   h7hvzUEAAAAJ:YsMSGLbcyi4C:
-    citations: 21
+    citations: 22
     title: Multitask differential evolution with adaptive dual knowledge transfer
     year: '2024'
   h7hvzUEAAAAJ:_FxGoFyzp5QC:
@@ -81,11 +81,11 @@ papers:
     title: Ensemble of Transfer Techniques via Adaptive Resource Allocation for Multiobjective Multitask Optimization
     year: '2026'
   h7hvzUEAAAAJ:qjMakFHDy7sC:
-    citations: 101
+    citations: 102
     title: Multitasking optimization via an adaptive solver multitasking evolutionary framework
     year: '2023'
   h7hvzUEAAAAJ:roLk4NBRz8UC:
-    citations: 4
+    citations: 5
     title: Progressive auto-encoding for domain adaptation in evolutionary multi-task optimization
     year: '2025'
   h7hvzUEAAAAJ:ufrVoPGSRksC:
