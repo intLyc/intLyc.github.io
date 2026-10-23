@@ -7,7 +7,7 @@ countries:
   visitors: 77
 - country: JP
   display_country: Japan
-  visitors: 13
+  visitors: 14
 - country: TW
   display_country: Taiwan
   visitors: 4
@@ -29,4 +29,4 @@ countries:
 metadata:
   last_updated: '2026-10-23'
   period_start: '2026-08-08T00:00:00Z'
-  total_visitors: 243
+  total_visitors: 244
