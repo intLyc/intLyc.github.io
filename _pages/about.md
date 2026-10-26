@@ -68,7 +68,10 @@ latest_posts:
   <div class="service-group-title">Conferences</div>
   <div class="service-blocks">
     <span class="service-block">ICML</span>
+    <span class="service-block">ICLR</span>
     <span class="service-block">AAAI</span>
     <span class="service-block">ACM MM</span>
+    <span class="service-block">GECCO</span>
+    <span class="service-block">CEC</span>
   </div>
 </div>
