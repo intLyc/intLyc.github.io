@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-10-26'
+  last_changed: '2026-10-28'
   last_checked: '2026-10-28'
   last_updated: '2026-10-28'
   paper_count: 23
@@ -41,7 +41,7 @@ papers:
     title: A competitive and cooperative evolutionary framework for ensemble of constraint handling techniques
     year: '2024'
   h7hvzUEAAAAJ:UeHWp8X0CEIC:
-    citations: 47
+    citations: 48
     title: 'MToP: A MATLAB benchmarking platform for evolutionary multitasking'
     year: '2026'
   h7hvzUEAAAAJ:UebtZRa9Y70C:
@@ -57,15 +57,15 @@ papers:
     title: A diversity-enhanced tri-stage framework for constrained multi-objective optimization
     year: '2024'
   h7hvzUEAAAAJ:Y0pCki6q_DkC:
-    citations: 17
+    citations: 18
     title: Transfer search directions among decomposed subtasks for evolutionary multitasking in multiobjective optimization
     year: '2024'
   h7hvzUEAAAAJ:YsMSGLbcyi4C:
-    citations: 22
+    citations: 23
     title: Multitask differential evolution with adaptive dual knowledge transfer
     year: '2024'
   h7hvzUEAAAAJ:_FxGoFyzp5QC:
-    citations: 28
+    citations: 29
     title: Multiobjective multitask optimization via diversity-and convergence-oriented knowledge transfer
     year: '2025'
   h7hvzUEAAAAJ:d1gkVwhDpl0C:
@@ -93,6 +93,6 @@ papers:
     title: 'Evolutionary competitive multiobjective multitasking: One-pass optimization of heterogeneous pareto solutions'
     year: '2025'
   h7hvzUEAAAAJ:zYLM7Y9cAGgC:
-    citations: 69
+    citations: 70
     title: Multiobjective multitask optimization with multiple knowledge types and transfer adaptation
     year: '2024'
