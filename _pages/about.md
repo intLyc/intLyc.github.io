@@ -58,9 +58,11 @@ latest_posts:
     <span class="service-block">IEEE TEVC</span>
     <span class="service-block">IEEE TSMC-S</span>
     <span class="service-block">IEEE CIM</span>
+    <span class="service-block">IEEE TETCI</span>
     <span class="service-block">AI Review</span>
     <span class="service-block">Swarm Evol. Comput.</span>
     <span class="service-block">Expert Syst. Appl.</span>
+    <span class="service-block">Appl. Soft Comput.</span>
   </div>
 </div>
 
