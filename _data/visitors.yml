@@ -8,12 +8,12 @@ countries:
 - country: JP
   display_country: Japan
   visitors: 15
+- country: CN
+  display_country: Mainland China
+  visitors: 4
 - country: TW
   display_country: Taiwan
   visitors: 4
-- country: CN
-  display_country: Mainland China
-  visitors: 2
 - country: FR
   display_country: France
   visitors: 2
@@ -29,4 +29,4 @@ countries:
 metadata:
   last_updated: '2026-11-10'
   period_start: '2026-08-08T00:00:00Z'
-  total_visitors: 266
+  total_visitors: 268
