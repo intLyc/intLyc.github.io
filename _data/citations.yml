@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-11-07'
+  last_changed: '2026-11-14'
   last_checked: '2026-11-14'
   last_updated: '2026-11-14'
   paper_count: 23
@@ -37,7 +37,7 @@ papers:
     title: Information entropy based evolutionary multitasking optimization
     year: '2026'
   h7hvzUEAAAAJ:Tyk-4Ss8FVUC:
-    citations: 29
+    citations: 30
     title: A competitive and cooperative evolutionary framework for ensemble of constraint handling techniques
     year: '2024'
   h7hvzUEAAAAJ:UeHWp8X0CEIC:
@@ -81,7 +81,7 @@ papers:
     title: Ensemble of Transfer Techniques via Adaptive Resource Allocation for Multiobjective Multitask Optimization
     year: '2026'
   h7hvzUEAAAAJ:qjMakFHDy7sC:
-    citations: 102
+    citations: 103
     title: Multitasking optimization via an adaptive solver multitasking evolutionary framework
     year: '2023'
   h7hvzUEAAAAJ:roLk4NBRz8UC:
