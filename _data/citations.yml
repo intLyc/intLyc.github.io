@@ -1,5 +1,5 @@
 metadata:
-  last_changed: '2026-11-15'
+  last_changed: '2026-11-22'
   last_checked: '2026-11-22'
   last_updated: '2026-11-22'
   paper_count: 23
@@ -65,7 +65,7 @@ papers:
     title: Multitask differential evolution with adaptive dual knowledge transfer
     year: '2024'
   h7hvzUEAAAAJ:_FxGoFyzp5QC:
-    citations: 29
+    citations: 30
     title: Multiobjective multitask optimization via diversity-and convergence-oriented knowledge transfer
     year: '2025'
   h7hvzUEAAAAJ:d1gkVwhDpl0C:
